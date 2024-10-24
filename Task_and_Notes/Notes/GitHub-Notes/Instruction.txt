@@ -98,7 +98,10 @@ Step 5: Create netlify account and Login by github account using below link:
 											
 		Click on "Add new site" >> import an existing project >> Deploy with github >> Search and Select the repository >> Click on Deploy button. >> it wil show "Site deploy in Progress" then it will get the link.									
 		
-		
+Note: it getting error then follow below steps-
+(1) run command:  git add .
+(2) than run command: git commit -m "type your commit message"
+(3) than run command: git push    or     git push -u origin main        or           git push -u origin <folder name>	
 ///////////////////////////////////////////////////////////////////////////////////
 
 Fetch(Clone) project by git hub repository:
