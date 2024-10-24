@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Untitled Page</title>
+    <!--  insert jquery link  -->
+</head>
+<body>
+
+
+
+<script>
+    
+    function getCookie(cookieName) 
+    {
+        var allcookie_value = document.cookie;
+        var cookie_start = allcookie_value.indexOf(" " + cookieName + "=");
+        if (cookie_start == -1) {
+            cookie_start = allcookie_value.indexOf(cookieName + "=");
+        }
+
+        var cookie_value;
+        if (cookie_start == -1) {
+            cookie_value = null;
+        }
+        else {
+            cookie_start = allcookie_value.indexOf("=", cookie_start) + 1;
+            var cookie_end = allcookie_value.indexOf(";", cookie_start);
+            if (cookie_end == -1) {
+                cookie_end = allcookie_value.length;
+            }
+            cookie_value = unescape(allcookie_value.substring(cookie_start, cookie_end));
+        }
+        return cookie_value;
+    }
+
+    $(document).ready(function(){
+    
+   var checkcookie = getCookie("fcgxwDrRX34vXJB");   // pass cookie name for getting cookie value
+   if(checkcookie==null || checkcookie=="" || checkcookie=="undefined")
+   {
+   
+    location.href="../signin.html";
+   }
+    
+    
+    });
+</script>
+</body>
+</html>

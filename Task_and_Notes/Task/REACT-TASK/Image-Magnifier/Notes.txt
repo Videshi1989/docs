@@ -1,0 +1,40 @@
+npm install react-image-magnify
+			or
+npm install image-magnify	
+
+https://codesandbox.io/s/e-commerce-product-image-zoom-lens-in-next-js-bl4xz?file=/package.json		  //reference link
+
+
+
+===========================================================
+import ReactImageMagnify from "image-magnify";
+import mobile from './images/mobile.jpg'
+
+export default function Magnifier() {
+
+  return (
+  
+      <div>
+        <ReactImageMagnify
+          {...{
+            smallImage: {
+              alt: "image",
+              isFluidWidth: true,
+              src: `${mobile}`
+             },
+            largeImage: {
+              alt: "",
+              src: `${mobile}`,
+              width: 1200,
+              height: 1800
+            },
+            isHintEnabled: true
+          }}
+        />
+      </div>
+  
+  );
+}
+
+
+

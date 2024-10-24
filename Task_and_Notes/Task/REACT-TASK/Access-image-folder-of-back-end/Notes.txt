@@ -1,0 +1,10 @@
+
+Step(1):Add below code inside server.js/index.js file on top:
+		const path = require("path");
+		 
+Step(2):Add below code inside server.js/index.js file on middle:
+		app.use('/uploads', express.static(path.join(__dirname, 'uploads')));	
+		
+		Note:
+		where uploads(both places) is folder name should be located in root location.(for another location we need to try)
+		i.e. we need to make static to uploads folder then we can use from front-end side.

@@ -1,0 +1,16 @@
+
+https://www.youtube.com/watch?v=ZDRdq9QSfI8           // convert blur image to clear image
+
+ctrl + 0     // to get actual size
+
+open image >> ctrl+A >> ctrl+X >> file >> new >> click on "OK" >> ctrl+v >> goto image >> image size >> set width 3000px(Approximate) than set resolution 300  >> save color code manually or by using swatches >> press ctrl+shift+u (it will get black & white color) >> goto Filter >> convert to smart Filters >> press "OK" >> again goto Filter >> Blur >> Gaussian blur >> set radius to get smooth view not jigzag >> click on "create new fill or adjustment layer" on bottom right corner >> click on "curves" >> take both downarrow icons in center position (adjust according to self) than close it >> select both layers by ctrl key than right click than click "merge layer" >> select required color in front view >> select "Paint bucket tool" >> click on perticular area(to remove black outline click multiple times)
+
+
+
+To convert vector image:(13:00)
+
+press ctrl + layer(single layered image in psd format) >> it will select all layers automatically >> select rectangular marquee tool >> right click on any selected area >> select "Make work path" >> select tolerence 1.0 >> click on "Ok" >> select "Direct selection tool" >> right click on any selected area >> click on "Create Vector Mask" >> save as eps format.
+
+
+								******************************************************************************************
+

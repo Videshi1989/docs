@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <style>
+        @media only screen and (max-device-width:767px)
+        {
+
+            .top-div {
+                display: none;
+                padding: 25px 0 5px 0;
+                background: #69cfbb;
+                position: absolute;
+                left: 0;
+                top: 50px;
+                width: 100%;
+            }
+        }
+    </style>
+    
+</head>
+<body>
+    <button onclick="myFunction();">Toggle</button>
+    <div class="top-div" id="top-div" style="display:none;">
+        <ul>
+            <li><a href="#">Study</a></li>
+            <li><a href="#">Aboutus</a></li>
+            <li><a href="#">Admission</a></li>
+            <li><a href="#">Pages</a></li>
+            <li><a href="#">News</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Apply</a></li>
+        </ul>
+    </div>
+
+
+
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("top-div");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+
+            }
+            else {
+                x.style.display = "none";
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>

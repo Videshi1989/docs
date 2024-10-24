@@ -1,0 +1,102 @@
+https://www.npmjs.com/package/react-scroll-to-top                  //reference link   [ Working with easy step]
+
+(1) run below command with in project :
+	npm i react-scroll-to-top
+	
+(2) import below component inside App.js file or in another component:
+	import ScrollToTop from "react-scroll-to-top";
+	
+(3) call below component inside App.js file or in another component:
+	<ScrollToTop smooth />	
+
+
+
+
+
+
+*********************************************************************
+https://www.geeksforgeeks.org/how-to-create-a-scroll-to-top-button-in-react-js/               //reference link     [working with complecated]
+
+(1) run below 2 command with in project:
+    npm install --save styled-components
+	npm install --save react-icons
+	
+(2) create two components with in components folder:
+    ScrollButton.js and Styles.js.
+
+(3) paste below code inside ScrollButton.js
+    
+    import React, {useState} from 'react';
+	import {FaArrowCircleUp} from 'react-icons/fa';
+	import { Button } from './Styles';
+
+	const ScrollButton = () =>{
+
+	const [visible, setVisible] = useState(false)
+
+	const toggleVisible = () => {
+	const scrolled = document.documentElement.scrollTop;
+	if (scrolled > 300){
+	setVisible(true)
+	}
+	else if (scrolled <= 300){
+	setVisible(false)
+	}
+	};
+
+	const scrollToTop = () =>{
+	window.scrollTo({
+	top: 0,
+	behavior: 'smooth'
+	/* you can also use 'auto' behaviour
+		in place of 'smooth' */
+	});
+	};
+
+	window.addEventListener('scroll', toggleVisible);
+
+	return (
+	<Button>
+	<FaArrowCircleUp onClick={scrollToTop}
+	style={{display: visible ? 'inline' : 'none'}} />
+	</Button>
+	);
+	}
+
+	export default ScrollButton;
+	
+	
+(4) Paste below code inside Styles.js
+
+    import styled from 'styled-components';
+
+	export const Heading = styled.h1`
+	text-align: center;
+	color: green;
+	`;
+
+	export const Content = styled.div`
+	overflowY: scroll;
+	height: 2500px;
+	`;
+
+	export const Button = styled.div`
+	position: fixed;
+	width: 100%;
+	left: 50%;
+	bottom: 40px;
+	height: 20px;
+	font-size: 3rem;
+	z-index: 1;
+	cursor: pointer;
+	color: green;
+	`
+	
+	
+(5) attach below code inside App.js file:
+    import ScrollButton from './components/ScrollButton';
+
+(6) call below component inside App.js file
+    <ScrollButton />
+	
+	

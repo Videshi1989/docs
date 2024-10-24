@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+         
+button {
+    background: none;
+    border: 2px solid;
+    font: inherit;
+    line-height: 1;
+    margin: 0.5em;
+    padding: 1em 2em;
+  position: relative;
+}
+
+.fill-left{
+  color: #a972cb
+}
+  
+.fill-left:before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 0px;
+  height: 100%;
+  background-color: #cb72aa;
+  transition: all 1s ease;
+}
+
+.fill-left:hover:before {
+  width: 100%;
+  opacity: 0.6;
+}
+
+/*2 button*/
+.fill-right{
+  color: #ef6eae;
+}
+  
+.fill-right:before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 0px;
+  height: 100%;
+  background-color: #ef8f6e;
+  transition: all 1s ease;
+}
+
+.fill-right:hover:before {
+  width: 100%;
+  opacity: 0.6;
+}
+
+/*3*/
+
+.fill-up{
+  color: #ff7f82
+}
+  
+.fill-up:before {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left:0px;
+  width: 100%;
+  height: 0;
+  background-color: #ffdc7f;
+  transition: all 1s ease;
+}
+
+.fill-up:hover:before {
+  height: 100%;
+  opacity: 0.6;
+}
+
+/*4*/
+
+.fill-down{
+  color: #ffa260;
+}
+  
+.fill-down:before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 0px;
+  background-color: #e5ff60;
+  transition: all 1s ease;
+}
+
+.fill-down:hover:before {
+  height: 100%;
+  opacity: 0.6;
+}
+
+
+
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            
+            <button class="fill-left">FILL LEFT</button>
+            <button class="fill-right">FILL RIGHT</button>
+            <button class="fill-up">FILL UP</button>
+            <button class="fill-down">FILL DOWN</button>
+          
+          </div>
+          
+    </body>
+</html>

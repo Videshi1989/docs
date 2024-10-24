@@ -1,0 +1,40 @@
+****************** React-js-setup*************************
+
+
+https://www.youtube.com/watch?v=smC8kxS0rps&list=PL8p2I9GklV44oDSE3j-E-OkvxFkz5a1d8	//Tutorial Link
+https://www.youtube.com/watch?v=KR5PI7yFrAI&list=PL_HlKez9XCSO1g7c61SyJZE4iehJDFg_w
+https://reactjs.org/	//For understanding and finding reactjs version
+https://github.com/facebook/create-react-app	//to understand
+
+(1)install  node js        		 https://nodejs.org/en/     [select recommended for most users]
+(2)install visual studio code
+(3)create a folder on desktop location named of FirstReact    (suppose that)
+(4) open command prompt,goto folder location(with in 'FirstReact' folder) by command and run below command:
+    npm install -g create-react-app
+	
+	Note :
+           (1)Search cmd on seachbar>>right click on Command Prompt>>Administrator>>close all by cd.. then below command
+			cd Users\User\Desktop\FirstReact       [ we can check exact path in C drive ]
+
+	   (2) we can change drive [suppose that we want to point D drive] by using below command:
+                        pushd D:
+	
+	   (4)To check react-js version open command prompt,goto folder location(with in 'FirstReact' folder) by command and run below command:
+	   create-react-app --version
+	
+(5) to devlop react application, open command prompt,goto folder location(with in 'FirstReact' folder) by command and run below command:
+      create-react-app myapp									//myapp is new application name
+	  
+(6) goto myapp folder location by command(cd myapp).
+(7)	after opening myapp folder location run below command:
+    npm start
+	
+	Note:(a) for version of below 5.0 , we use npm and higher we use npx
+	
+(8) open myapp folder in visual studio code.
+(9) For using dummy API - https://reqres.in/				Exp: https://reqres.in/api/user/2
+
+
+
+
+

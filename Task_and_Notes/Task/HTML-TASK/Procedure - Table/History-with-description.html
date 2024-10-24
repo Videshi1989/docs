@@ -1,0 +1,170 @@
+                                /* Procedure for History with Discription without datatable*/
+
+
+
+--  [MARWallet_Summary] '50','1','AL76354566','','' ,'','ALL','0'                              
+CREATE PROCEDURE [dbo].[ShoppingWallet_Summary]                   
+@intPageSize BIGINT,                                                                  
+@intCurrentPage BIGINT,                           
+@memid VARCHAR(20),
+@Filter VARCHAR(200),
+@FormDate varchar(50),                                                                                                        
+@ToDate varchar(50),
+@IncType varchar(50),
+@intTotalRecords bigint output                                 
+AS                                
+BEGIN                           
+-----------     select memid,pwd from memdetail where memid='866136'                   
+SET NOCOUNT ON;                          
+-----------                      
+DECLARE @start BIGINT=0                      
+--SET @intPageSize=100000000                                                                                                                             
+---------------                                                                                            
+SET @start = 0;                            
+SET @start = @intPageSize * (@intCurrentPage - 1);                  
+DECLARE @SFrmDt DATE, @STodt DATE   
+IF @ToDate = ''                                   
+  BEGIN                                      
+    SET @STodt = CONVERT(DATE,dbo.getdateind() ,103)      
+  end                                   
+  ELSE                                
+  BEGIN                                
+   SET @STodt = CONVERT(DATE, @ToDate)                                
+  END                                  
+IF @FormDate = ''                            
+  BEGIN                                      
+    SET @SFrmDt = CONVERT(DATE,'01/01/2010' ,103)                            
+  end                                   
+  ELSE                                
+  BEGIN                                
+   SET @SFrmDt = CONVERT(DATE, @FormDate)                                
+  END    
+ DECLARE @tblStudentDtl TABLE (SrNo BIGINT IDENTITY NOT NULL,Id BIGINT, Date DATETIME,  Debit FLOAT,Credit FLOAT,
+ Remark VARCHAR(500),IncType VARCHAR(50),Balance FLOAT)                    
+ --------------- select memid from tblpayoutwallet 
+ DECLARE @Bln FLOAT=0
+ SELECT @Bln=ISNULL(SUM(cr)-SUM(dr),0) FROM tblA_Wallet WITH (NOLOCK) WHERE memID= @memid
+ ---       select * from tblCashCreditWallet with (nolock) where inctype='e-Recharge'  order by id desc            
+ INSERT INTO @tblStudentDtl                  
+ SELECT RW.ID,RW.TransDt,RW.Dr,RW.Cr, 
+ CASE 
+ --WHEN RW.IncType='Recieved from Wallet' THEN '<h5 style=''margin-bottom:0px;'' >Received from member</h5><span style=''font-size:12px;'' >Amount received from member-ID: '+CAST(PayoutID AS VARCHAR)+' Against Transfer No: '+ISNULL(AutoWithNo,'') + ' </span>'  
+ --WHEN RW.IncType='Fund Request' THEN '<h5 style=''margin-bottom:0px;''>Fund Request </h5><span style=''font-size:12px;'' >by Request No.: '+ISNULL(TransID,'') + ' </span>' 
+ WHEN RW.IncType='By Company' THEN  CASE WHEN CR>0 THEN  '  Amount Credited by Admin' ELSE 'By Company - Amount Debited by Admin' END
+ --WHEN RW.IncType = 'Level Bonus' THEN 'Purchase-No: '+CAST(InvestID AS VARCHAR) +'/ Down-ID: '+PayoutID+'/ Purchase Amt: Rs.'+ CAST(AutoWithNo AS VARCHAR) +'/ Lvl-No: '+  CAST(ISNULL(Mode,0) AS VARCHAR)+', Deduction: '+CONVERT(VARCHAR,Dedctions) 
+ --WHEN RW.IncType ='Withdrawal Request' THEN '  Against Withdrawal-No: '+CAST(AutoWithNo AS VARCHAR) + ''
+ --WHEN RW.IncType='Add Fund' THEN ' Against Add Fund Request ID.: '+ISNULL(TransID,'') + '' 
+ --WHEN RW.IncType ='Withdrawal Reversed' THEN '  Against Withdrawal-No: '+CAST(BatchNo AS VARCHAR) + '' 
+-- WHEN RW.IncType='e-Recharge' THEN '   Recharge to Customer-No: '+ISNULL(BatchNo,'') + '/ Request-No: '+ISNULL(InvestID,'')+''
+ WHEN RW.IncType ='Transfer from Wallet' THEN ' Against Transfer No: '+ISNULL(AutoWithNo,'') + '/ Transfer from f-Wallet ' 
+ WHEN RW.IncType ='Received from f-Wallet' THEN ' Against Transfer No: '+ISNULL(AutoWithNo,'') + '/ Received from f-Wallet ' 
+-- WHEN RW.IncType='Transfer to member' THEN '  Against Transfer No: '+ISNULL(AutoWithNo,'') + '/ Transfer to '+ISNULL(Payoutid,'')+'' 
+-- WHEN RW.IncType='Received from member' THEN '  Against Transfer No: '+ISNULL(AutoWithNo,'') + '/ Received from '+ISNULL(Payoutid,'')+'' 
+ WHEN RW.IncType='Purchase Package' THEN '   Against : '+ISNULL(BatchNo,'')
+ WHEN RW.IncType='Package Orders' THEN '   Against Order No: '+ISNULL(InvestID,'') 
+-- WHEN RW.IncType='Recieved from Wallet' THEN '   Against Recieved No: '+ISNULL(AutoWithNo,'') + ' Recieved From '+ISNULL(BatchNo,'')+'' 
+-- WHEN RW.IncType='Fund Request' THEN '   by Request No.: '+ISNULL(TransID,'') + '' 
+ --WHEN RW.IncType='Royalties' THEN '   Weekly Royalties.' 
+ --WHEN RW.IncType='e-Recharge' THEN '   Recharge to Customer-No: '+ISNULL(BatchNo,'') + '/ Request-No: '+ISNULL(InvestID,'')+'' 
+ --WHEN RW.IncType='Recharge Bonus' THEN 
+ --CASE WHEN MemID=InvestID THEN 'Self Recharge Bonus against Recharge-No: '+AutoWithNo+' /Req No: '+PayoutID+' /Rec. Amt: '+BatchNo+' /Bonus% : '+CONVERT(VARCHAR,InvstGwthPer)
+ --ELSE 'Team Recharge Bonus against Rec. Amt: '+BatchNo+' /Bonus% : '+CONVERT(VARCHAR,InvstGwthPer)+' /Down-ID: '+InvestID+' /Lvl: '+CONVERT(VARCHAR,Mode) END
+ --WHEN RW.IncType = 'Pool Income' THEN 'Pool-No: '+CAST(Mode AS VARCHAR) + '/ Deposit-No:'+ CAST(InvestID AS VARCHAR)+'/ Gbl-Pool-ID: '+ CAST(AutoWithNo AS VARCHAR) +', Deduction: '+CONVERT(VARCHAR,Dedctions)   
+ ELSE '' END ,RW.IncType,@Bln
+ FROM tblA_Wallet RW WITH (NOLOCK) WHERE RW.MemID=@memid     --tblCashCreditWallet
+ ORDER BY RW.id DESC    ---   SELECT * FROM tblCashCreditWallet    order by id desc      
+ -------- select memid,pwd,ewalletpwd from memdetail order by acmemid where memid='Dg34411732'
+-- Transfer to member sp_help tblCashCreditWallet
+--Received from member
+ SELECT @intTotalRecords=Count(SrNo) FROM @tblStudentDtl 
+ SET ROWCOUNT @intPageSize
+ IF (@Filter='ALL' OR @Filter='' AND @FormDate ='' AND @ToDate = '' AND @IncType='ALL')
+ BEGIN
+  SELECT @intTotalRecords=Count(SrNo) FROM @tblStudentDtl WHERE SrNo > @start
+  SET ROWCOUNT @intPageSize 
+  SELECT SrNo, Date, Remark,IncType,''+CONVERT(VARCHAR,Balance) Balance,
+  CASE WHEN Credit='0' THEN CONVERT(VARCHAR,0) ELSE 'Rs. '+CONVERT(VARCHAR,Credit)+''  END Credit,
+  CASE WHEN Debit='0' THEN CONVERT(VARCHAR,0) ELSE 'Rs. '+CONVERT(VARCHAR,Debit)+'' END Debit,
+  @intTotalRecords TotalRec,@intPageSize PgSz,@intCurrentPage Pgno,FLOOR(ROUND(@intTotalRecords/@intPageSize,0))+1 TotPg,
+  CASE WHEN (FLOOR(ROUND(@intTotalRecords/@intPageSize,0))+1)=@intCurrentPage THEN @intCurrentPage ELSE @intCurrentPage+1 END NPgno,
+  CASE WHEN (@intCurrentPage-1)=0 THEN 1 ELSE @intCurrentPage-1 END PPgno  
+  FROM @tblStudentDtl WHERE SrNo > @start
+ END
+ ELSE IF (@Filter='' AND @FormDate <>'' AND @ToDate <> '' AND @IncType='ALL')
+ BEGIN
+  SELECT @intTotalRecords=Count(SrNo) FROM @tblStudentDtl WHERE SrNo > @start AND CONVERT(DATE, Date) BETWEEN @SFrmDt  and @STodt 
+  SET ROWCOUNT @intPageSize 
+  SELECT SrNo, Date, Remark,IncType,''+CONVERT(VARCHAR,Balance) Balance,
+  CASE WHEN Credit='0' THEN CONVERT(VARCHAR,0) ELSE 'Rs. '+CONVERT(VARCHAR,Credit)+''  END Credit,
+  CASE WHEN Debit='0' THEN CONVERT(VARCHAR,0) ELSE 'Rs. '+CONVERT(VARCHAR,Debit)+'' END Debit,
+  @intTotalRecords TotalRec,@intPageSize PgSz,@intCurrentPage Pgno,FLOOR(ROUND(@intTotalRecords/@intPageSize,0))+1 TotPg,
+  CASE WHEN (FLOOR(ROUND(@intTotalRecords/@intPageSize,0))+1)=@intCurrentPage THEN @intCurrentPage ELSE @intCurrentPage+1 END NPgno,
+  CASE WHEN (@intCurrentPage-1)=0 THEN 1 ELSE @intCurrentPage-1 END PPgno  
+  FROM @tblStudentDtl WHERE SrNo > @start
+  AND CONVERT(DATE, Date) BETWEEN @SFrmDt  and @STodt  
+ END
+ ELSE IF (@Filter='' AND @FormDate <>'' AND @ToDate <> '' AND @IncType<>'ALL')
+ BEGIN
+  SELECT @intTotalRecords=Count(SrNo) FROM @tblStudentDtl WHERE SrNo > @start AND CONVERT(DATE, Date) BETWEEN @SFrmDt  and @STodt 
+  SET ROWCOUNT @intPageSize 
+  SELECT SrNo, Date, Remark,IncType,''+CONVERT(VARCHAR,Balance) Balance,
+  CASE WHEN Credit='0' THEN CONVERT(VARCHAR,0) ELSE 'Rs. '+CONVERT(VARCHAR,Credit)+''  END Credit,
+  CASE WHEN Debit='0' THEN CONVERT(VARCHAR,0) ELSE 'Rs. '+CONVERT(VARCHAR,Debit)+'' END Debit,
+  @intTotalRecords TotalRec,@intPageSize PgSz,@intCurrentPage Pgno,FLOOR(ROUND(@intTotalRecords/@intPageSize,0))+1 TotPg,
+  CASE WHEN (FLOOR(ROUND(@intTotalRecords/@intPageSize,0))+1)=@intCurrentPage THEN @intCurrentPage ELSE @intCurrentPage+1 END NPgno,
+  CASE WHEN (@intCurrentPage-1)=0 THEN 1 ELSE @intCurrentPage-1 END PPgno  
+  FROM @tblStudentDtl WHERE SrNo > @start AND IncType =@IncType
+  AND CONVERT(DATE, Date) BETWEEN @SFrmDt  and @STodt  
+ END
+ ELSE IF (@Filter='' AND @FormDate ='' AND @ToDate = '' AND @IncType<>'ALL')
+ BEGIN
+  SELECT @intTotalRecords=Count(SrNo) FROM @tblStudentDtl WHERE SrNo > @start AND CONVERT(DATE, Date) BETWEEN @SFrmDt  and @STodt 
+  SET ROWCOUNT @intPageSize 
+  SELECT SrNo, Date, Remark,IncType,''+CONVERT(VARCHAR,Balance) Balance,
+  CASE WHEN Credit='0' THEN CONVERT(VARCHAR,0) ELSE 'Rs. '+CONVERT(VARCHAR,Credit)+''  END Credit,
+  CASE WHEN Debit='0' THEN CONVERT(VARCHAR,0) ELSE 'Rs. '+CONVERT(VARCHAR,Debit)+'' END Debit,
+  @intTotalRecords TotalRec,@intPageSize PgSz,@intCurrentPage Pgno,FLOOR(ROUND(@intTotalRecords/@intPageSize,0))+1 TotPg,
+  CASE WHEN (FLOOR(ROUND(@intTotalRecords/@intPageSize,0))+1)=@intCurrentPage THEN @intCurrentPage ELSE @intCurrentPage+1 END NPgno,
+  CASE WHEN (@intCurrentPage-1)=0 THEN 1 ELSE @intCurrentPage-1 END PPgno  
+  FROM @tblStudentDtl WHERE SrNo > @start AND IncType =@IncType
+ END
+ ELSE IF (@Filter<>'' AND @FormDate ='' AND @ToDate = '' AND @IncType='ALL')
+ BEGIN
+  SELECT @intTotalRecords=Count(SrNo) FROM @tblStudentDtl WHERE SrNo > @start AND CONVERT(DATE, Date) BETWEEN @SFrmDt  and @STodt 
+  SET ROWCOUNT @intPageSize 
+  SELECT SrNo, Date, Remark,IncType,''+CONVERT(VARCHAR,Balance) Balance,
+  CASE WHEN Credit='0' THEN CONVERT(VARCHAR,0) ELSE 'Rs. '+CONVERT(VARCHAR,Credit)+''  END Credit,
+  CASE WHEN Debit='0' THEN CONVERT(VARCHAR,0) ELSE 'Rs. '+CONVERT(VARCHAR,Debit)+'' END Debit,
+  @intTotalRecords TotalRec,@intPageSize PgSz,@intCurrentPage Pgno,FLOOR(ROUND(@intTotalRecords/@intPageSize,0))+1 TotPg,
+  CASE WHEN (FLOOR(ROUND(@intTotalRecords/@intPageSize,0))+1)=@intCurrentPage THEN @intCurrentPage ELSE @intCurrentPage+1 END NPgno,
+  CASE WHEN (@intCurrentPage-1)=0 THEN 1 ELSE @intCurrentPage-1 END PPgno  
+  FROM @tblStudentDtl WHERE SrNo > @start AND (Remark LIKE '%'+@Filter+'%' OR Debit LIKE '%'+@Filter+'%' OR Credit LIKE '%'+@Filter+'%')
+ END
+ ELSE IF (@Filter<>'' AND @FormDate <>'' AND @ToDate <>'' AND @IncType='ALL')
+ BEGIN
+  SELECT @intTotalRecords=Count(SrNo) FROM @tblStudentDtl WHERE SrNo > @start AND CONVERT(DATE, Date) BETWEEN @SFrmDt  and @STodt 
+  SET ROWCOUNT @intPageSize 
+  SELECT SrNo, Date, Remark,IncType,''+CONVERT(VARCHAR,Balance) Balance,
+  CASE WHEN Credit='0' THEN CONVERT(VARCHAR,0) ELSE 'Rs. '+CONVERT(VARCHAR,Credit)+''  END Credit,
+  CASE WHEN Debit='0' THEN CONVERT(VARCHAR,0) ELSE 'Rs. '+CONVERT(VARCHAR,Debit)+'' END Debit,
+  @intTotalRecords TotalRec,@intPageSize PgSz,@intCurrentPage Pgno,FLOOR(ROUND(@intTotalRecords/@intPageSize,0))+1 TotPg,
+  CASE WHEN (FLOOR(ROUND(@intTotalRecords/@intPageSize,0))+1)=@intCurrentPage THEN @intCurrentPage ELSE @intCurrentPage+1 END NPgno,
+  CASE WHEN (@intCurrentPage-1)=0 THEN 1 ELSE @intCurrentPage-1 END PPgno  
+  FROM @tblStudentDtl WHERE SrNo > @start AND (Remark LIKE '%'+@Filter+'%' OR Debit LIKE '%'+@Filter+'%' OR Credit LIKE '%'+@Filter+'%')
+  AND CONVERT(DATE, Date) BETWEEN @SFrmDt  and @STodt 
+  PRINT '2'
+ END
+ ELSE
+ BEGIN
+  SELECT @intTotalRecords=Count(SrNo) FROM @tblStudentDtl WHERE SrNo > @start
+  SET ROWCOUNT @intPageSize 
+  SELECT SrNo, Date, Remark,IncType,''+CONVERT(VARCHAR,Balance) Balance,
+  CASE WHEN Credit='0' THEN CONVERT(VARCHAR,0) ELSE 'Rs. '+CONVERT(VARCHAR,Credit)+''  END Credit,
+  CASE WHEN Debit='0' THEN CONVERT(VARCHAR,0) ELSE 'Rs. '+CONVERT(VARCHAR,Debit)+''  END Debit,
+  @intTotalRecords TotalRec,@intPageSize PgSz,@intCurrentPage Pgno,FLOOR(ROUND(@intTotalRecords/@intPageSize,0))+1 TotPg,
+  CASE WHEN (FLOOR(ROUND(@intTotalRecords/@intPageSize,0))+1)=@intCurrentPage THEN @intCurrentPage ELSE @intCurrentPage+1 END NPgno,
+  CASE WHEN (@intCurrentPage-1)=0 THEN 1 ELSE @intCurrentPage-1 END PPgno  
+  FROM @tblStudentDtl WHERE SrNo > @start AND 
+  (Remark LIKE '%'+@Filter+'%' OR Debit LIKE '%'+@Filter+'%' OR Credit LIKE '%'+@Filter+'%')
+ END
+END  

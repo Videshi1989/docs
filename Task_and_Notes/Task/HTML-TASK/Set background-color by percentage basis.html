@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
+        .prog {
+            width: 200px;
+            height: 50px;
+            border: 1px solid black;
+        }
+
+        .filler {
+            width: 0%;
+            height: 50px;
+            background-color: black;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="prog">
+        <div id="filler" class="filler"></div>
+    </div>
+
+    <script>
+        var stepSize = 50;
+        setTimeout((function ()
+        {
+            var filler = document.getElementById("filler"),percentage = 0;
+            return function progress()
+            {
+                filler.style.width = percentage + "%";
+                percentage += 1;
+                if (percentage <= 80)
+                {
+                    setTimeout(progress, stepSize);
+                }
+            }
+
+        }()), stepSize);
+    </script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+
+() LIKE Query:
+   update MemDetail set Caste=NULL where Caste like '%wish to specify%'
+   
+   Note: MemDetail is table name and Caste is colum name
+
+(1) insert query
+    INSERT INTO MemDetail (AcmemID, MemID, Pwd, MName) VALUES (@AcmemID, @MemID, @Pwd, @Mname)
+
+    Note:
+    SET IDENTITY_INSERT MemDetail ON;   [ if needed ]	
+	
+(2) update query
+    UPDATE tblRecharge_History SET RecAcpt=@Message,RecStatus=@Message,TransactionID=@TransactionID WHERE memID=@MemID AND RequestNo=@RequestNo	
+	
+(3)	To get current Date:
+    DBO.GETDATEIND()      
+	
+	
+	To get current Day:
+	DECLAE @Cur_day VARCHAR(12)
+	SET @Cur_day=  DATENAME(dw,DBO.GETDATEIND())
+	
+(4) update condition:
+    FirmLogo =case when @FirmLogo='' or @FirmLogo is null  then 'Images/no-logo.gif'  else  @FirmLogo end,
+	
+(5) To add colom in table:
+    ALTER TABLE <table_name> ADD <column_name> <data_type> (<size>);
+    EX:
+    ALTER TABLE FrRepur_tblDistributorMaster ADD IdentProof varchar (100);
+
+()  To Modify Existing Colomn
+    ALTER TABLE Table_Name ALTER COLUMN COLUMN_NAME DATATYPE(50)
+    EX: 
+     ALTER TABLE tblPackageOders ALTER COLUMN InvoiceDt VARCHAR(20)	
+	
+(6) To Drop colom in table:
+    ALTER TABLE <table name> DROP COLUMN <colom name>;	
+	
+(7) Set color:
+    DECLARE @Status VARCHAR(100)
+ SELECT @Status =status FROM FrRepur_FrnchKYCDTL with (nolock) where memid=@MemID 
+
+
+ IF (@Status='Pending' or @Status='' or @Status='null')
+  BEGIN
+  SELECT '<b style=''Color:#03a9f4;''>'+ UPPER(@status)+'</b>' status  
+  END 
+  
+  ELSE IF ( @Status='Rejected')
+  BEGIN
+  SELECT '<b style=''Color:red;''>'+ UPPER(@status)+'</b>' status  
+  END 	
+  
+ (8) Memid = RTRIM(@Memid) 
+ 
+ (9) Searching Query:
+     (A)Query for searching Colom name wise:
+     SELECT * FROM FrRepur_FranchEntryTable where  fr_pincode Like  '%560020%' ORDER BY Id DESC
+	 
+	 Note: where fr_pincode is colom name and 560020 is value of this colom
+	 
+	 (B)Query for searching All Records:
+	  SELECT * FROM FrRepur_FranchEntryTable where MemID is not NULL
+	  
+	 (C)Query for searching Between two dates:
+	  SELECT * FROM FrRepur_FranchEntryTable where convert(date, create_dt,103) BETWEEN FrmDt AND Todt ORDER BY  Id DESC
+	  
+	  Note: create_dt is data colom, FrmDt is from date , Todt is Todate and Id is colom of table
+	  
+(10)  Set link with query string(Fetching colom):
+      '<b><a href=''Order-Invoice.html?ordrid='+ rtrim(ORDERNo)+''' target=''_blank''>'+'Invoice Detail'+'</a></b>' InvoiceDtl
+
+(11)  ROUND(<Setcolomname>,0)
+      CONVERT(NUMERIC(18, 2),<Setcolomname>) 
+      CONVERT(VARCHAR(10),<Setcolomname>,103) AS DOB	<!--   DOB is NEW colom name  -->  
+	  
+(12)  REPLACE(<Setcolomname>,'"','')	<!-- replace "  to space  -->  
+
+(13)  SELECT TOP(100) Memid AS Mem FROM Memdetail
+
+(14)  <!--  INNER JOIN  -->
+
+
+      SELECT TOP(1000) pm.Name AS title ,pm.ImagePath AS image,pm.Pcode AS c,
+	  cn.CatName FROM FrRepur_tblProductMaster pm WITH(NOLOCK) INNER JOIN FrRepur_tblCategoryName cn WITH(NOLOCK) ON pm.Category = cn.CatNo
+      WHERE pm.Name LIKE '%'+ @CategryName +'%' 
+	  
+	  
+	  
+	  NOTE:
+	  (1)pm is predefined keyword of FrRepur_tblProductMaster table.
+	  (2)cn is predefined keyword of FrRepur_tblCategoryName table.
+	  (3)title,image and image are new colom name instead of actual colom name.
+	  (4)we will have to access colom name by using predefined keyword of the table.
+	  (5)It will select TOP 100 Rows Only.
+	  
+(15) copy data from table of one sql server to another sql server table (LIVE sever)
+    https://www.youtube.com/watch?v=dEEuQVzSU6g	 
+
+(16) <!-- SINGLE CASE  -->	
+     CASE WHEN @MemSts='GREEN' THEN 'Active' ELSE 'In-Active' END Status
+	 
+	 
+	 <!-- MULTIPLE CASE  -->
+	CASE WHEN @MemSts='GREEN' THEN 'Active'  
+         WHEN @MemSts='RED' THEN 'Active' 
+         WHEN @MemSts='YELLOW' THEN 'Active'  
+         WHEN @MemSts='GRAY' THEN 'Active' 
+    ELSE 'In-Active' 
+    END Status	
+	
+	
+(17)	
+	  
+	  
+	  

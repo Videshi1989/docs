@@ -1,0 +1,41 @@
+import React, { useEffect, useState } from 'react'
+
+const Test = () => 
+{
+  const [data, setData] = useState([]);
+          
+  const GetApiData=()=> 
+  {
+    fetch('https://jsonplaceholder.typicode.com/photos')
+    .then((res) => { return res.json(); })
+    .then((result) => { console.log(result); setData(result); })
+    .catch((error)=>{console.log(error)});
+  }
+
+  useEffect(() => { GetApiData();}, []);
+  
+  return (
+    <>
+      
+      {
+        
+        data.map
+        (
+          (photo,i) =>
+          <>
+             
+              <img key={photo.id} src={photo.url} alt={photo.title} width={100} id={i} />
+             
+          </>
+        )
+      }
+
+
+    </>
+  );
+        
+    
+  
+}
+
+export default Test

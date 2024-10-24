@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <style>
+	.parent
+	{
+	background: blue;  
+    height: 200px;
+	flex-direction: row;       
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    align-content: flex-end;
+    flex-wrap: wrap;
+	}
+	
+	
+    .welcome
+	{
+	background: red;
+    width: 100px;
+    }
+  
+	</style>
+  
+   <!--
+   
+    flex-direction: Bydefault it is row, it can be row,row-reverse,column,column-reverse
+	justify-content: it can be space-around,space-between,space-evenly
+    align-items: it can be center,flex-start,flex-end,revert
+	align-content: it can be center,flex-start,flex-end,revert,space-around,space-between,space-evenly
+	flex-wrap: it can be wrap,nowrap,wrap-reverse
+   
+   -->
+   
+</head>
+
+<body>
+
+<div class="parent">
+	<div class="welcome" style="height:50px;flex-shrink: 0;order: 5;">welcome1</div>
+	<!-- 
+	flex-shrink: 0;   			//it will not resize according to screen
+	order:5;          			//it will show instead of 5th div
+	-->
+	<div class="welcome" style="height:75px;flex-grow:2;order: 4;align-self:center;">welcome2</div>
+	<!-- 
+	flex-grow:2;      			//it will increase width, it can be 0,1,2,3...
+	order:4;          			//it will show instead of 4th div
+	align-self:center;          // only this div will show in center, it can be flex-start,flex-end
+	-->
+	<div class="welcome" style="height:100px;order: 3;">welcome3</div>
+	<!-- 
+	order:3;          			//it will show instead of 3rd div
+	-->
+	<div class="welcome" style="height:125px;order: 2;">welcome4</div>
+	<!-- 
+	order:2;          			//it will show instead of 2in div
+	-->
+	<div class="welcome" style="height:150px;order: 1;">welcome5</div>
+	<!-- 
+	order:1;          			//it will show instead of 1st div
+	-->
+</div>
+
+</body>
+
+</html>

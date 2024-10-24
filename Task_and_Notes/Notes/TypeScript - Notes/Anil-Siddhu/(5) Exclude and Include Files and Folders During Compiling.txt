@@ -1,0 +1,42 @@
+// to exclude and include file and folder during compile time
+
+(1) Generate json config file by below command(inside folder location):
+    tsc -init
+	
+(2) mention those ts files which you do not want to compile, after "compilerOptions" with json config file	:
+    ex:
+	
+	{
+		"compilerOptions": 
+		{
+			"target": "es2016",                                  
+			"module": "commonjs",                                
+			"forceConsistentCasingInFileNames": true,            
+			"strict": true,                                      
+			"skipLibCheck": true                                 
+		},
+		"exclude":["index.ts","unit.ts","inner","src/contact.ts","*/test.ts"]
+	}
+	
+	Note: 
+	(i) where inner is a folder, contact.ts is a file with in src folder and test.ts is a specific file can avail any where in main folder but that will not compile.
+	
+(3) mention those ts files which you want to compile rest you do not want to compile, after "compilerOptions" with json config file	:
+    ex:
+	
+	{
+		"compilerOptions": 
+		{
+			"target": "es2016",                                  
+			"module": "commonjs",                                
+			"forceConsistentCasingInFileNames": true,            
+			"strict": true,                                      
+			"skipLibCheck": true                                 
+		},
+		"include":["index.ts","unit.ts","inner","src/contact.ts","*/test.ts"]
+	}	
+	
+	Note: 
+	(i) where inner is a folder, contact.ts is a file with in src folder and test.ts is a specific file can avail any where in main folder.
+	
+(4) compile all files by tsc command	

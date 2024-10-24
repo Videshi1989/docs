@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Untitled Page</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+  <p>
+        <img src="http://i.imgur.com/yOadS1c.png" id="minus1" width="20" height="20">
+        <input id="qty1" type="text" value="1">
+        <img id="add1" src="http://i.imgur.com/98cvZnj.png" width="20" height="20">
+    </p>
+    <p>
+        <img src="http://i.imgur.com/yOadS1c.png" id="minus2" width="20" height="20">
+        <input id="qty2" type="text" value="1">
+        <img id="add2" src="http://i.imgur.com/98cvZnj.png" width="20" height="20">
+    </p>
+    
+    
+    
+    <script>
+    
+          $(function () {
+
+        $("#add1").click(function () {
+                add(1);
+        });
+
+        $("#minus1").click(function () {
+            minus(1);
+        });
+    
+    $("#add2").click(function () {
+                add(2);
+        });
+
+        $("#minus2").click(function () {
+            minus(2);
+        });
+});
+
+function add(i){
+    var currentVal = parseInt($("#qty" + i).val());
+            
+            if (!isNaN(currentVal)) {
+                $("#qty" + i).val(currentVal + 1);
+            }
+}
+
+function minus(i)
+{
+      var currentVal = parseInt($("#qty" + i).val());
+            if (!isNaN(currentVal) && currentVal > 0) 
+            {
+                $("#qty" + i).val(currentVal - 1);
+            }
+}
+
+
+    
+    </script>
+    
+    
+</body>
+</html>

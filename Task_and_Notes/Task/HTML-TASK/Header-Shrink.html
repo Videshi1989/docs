@@ -1,0 +1,104 @@
+<html>
+<head>
+	<style>
+		
+body{
+height:1500px;
+margin: 0 auto;
+
+}
+header{
+    position: fixed;
+    width: 100%;
+    padding: 20px 100px;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.75s;
+	background:green;
+}
+header .logo{
+    color: rgb(255, 255, 255);
+    font-weight: 700;
+    font-size: 2.5rem;
+    text-decoration: none;
+}
+header .nav{
+    position: relative;
+    display: flex;
+}
+header .nav li{
+    list-style: none;
+    margin-left: 50px;
+    height:100%;
+}
+header .nav li a{
+    text-decoration: none;
+    color: #fff;
+    font-weight: 300;
+    font-size: 1.5rem;
+}
+header.sticky{
+    background: grey;
+	
+    padding-top:0px;
+    padding-bottom:0px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0,0.5);
+    height:3.75rem;
+}
+header.sticky .logo{
+    color: rgb(0, 0, 0);
+}
+header.sticky ul{
+    height:100%;
+}
+header.sticky ul li{
+    height:100%;
+    display:flex;
+    align-items: center;
+}
+header.sticky ul li a{
+    color:rgb(204, 34, 34);
+}
+header.sticky .nav li:hover{
+    border-bottom: 5px solid #ff0157;
+}
+
+@media only screen and (max-width:600px){
+  body{
+  width:600px;
+  }
+}
+	</style>
+
+</head>
+
+<body>
+<header id="header">
+  <a href="#ban" class="logo">Avenger</a>
+  <ul class="nav">
+    <li><a href="#ban">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#expert">Expert</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+</header>
+<script>
+window.onscroll = function () { myFunction() };
+
+var header = document.getElementById("header");
+
+function myFunction() {
+  if (window.pageYOffset >= 30) {
+    header.classList.add("sticky")
+  } else {
+    header.classList.remove("sticky");
+  }
+}
+
+</script>
+</body>
+
+</html>

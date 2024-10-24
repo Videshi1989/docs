@@ -1,0 +1,85 @@
+This service is working only within server side.
+
+https://www.youtube.com/watch?v=UNKQ1I4O7eU          //youtube link
+https://www.youtube.com/watch?v=j_EAwG9Rwd4
+
+Step(1):Install multer in server side by using below command:
+		npm install multer
+		
+Step(2):Use below code inside server file:
+		const multer  = require('multer');
+		const storage = multer.diskStorage({
+		  destination: function (req, file, cb) {
+			cb(null, './uploads')     //images will store inside uploads folder, i.e. need to create uploads folder
+		  },
+		  filename: function (req, file, cb) {
+		   ///// const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+			/////cb(null, file.fieldname + '-' + uniqueSuffix) 
+	  
+			cb(null, Date.now() + "-" + file.originalname)
+	  
+		  }
+		})
+
+		const upload = multer({ storage: storage })
+	
+  	
+		app.post("/single",upload.single("image"),async (req,res)=>{
+		try
+		{
+		const{path,filename} = req.file
+		console.log("path:",path);    		// to insert path and filename in database
+		console.log("filename:",filename)   // to insert path and filename in database
+		await image.save();
+		res.send({msg:"Image Uploaded"})
+		}
+		catch(error)
+		{
+			res.send({msg:error})
+		}
+	})
+	app.use('./uploads', express.static('uploads'));
+	
+Step(3):Use below code in front-end side:	
+		import React,{useState} from 'react'
+
+		const Imageupload = ()=>{
+		const[img,setImg] = useState('');
+		const[displayimg,setdisplayimg] = useState('');
+		const formdata = new FormData();
+		formdata.append("image",img); 
+  
+		const handleSubmit = async(e)=>{
+		e.preventDefault();
+		/* await fetch('http://localhost:5000/api/admin/single',{method:"POST",body:formdata})
+        .then((res)=>{res.json()})
+        .then((result)=>{console.log("result:",result)})
+        .catch((error)=>{console.log("error",error)}); */
+    
+		const response = await fetch('http://localhost:5000/single',
+                        {
+                          method:"POST",
+                          body:formdata
+                        });
+        const data= await response.json();
+        console.log(data);
+        console.log(img)
+    };
+  
+	return (
+      <div className="App">
+       <form  encType='multipart/form-data'>
+       <h2>File upload</h2>
+       <br/>
+       <input type="file" accept="image/*" multiple="multiple" onChange={(e)=>{ setImg(e.target.files[0]);  setdisplayimg(URL.createObjectURL(e.target.files[0])) }}   />
+       <br/>
+       { displayimg ?  <img src={displayimg} style={{width:'100px',height:'100px'}} /> : '' }
+      
+       <br/><br/>
+       <button type="button" onClick={handleSubmit}>Upload</button>
+       </form>
+      </div>
+    );
+}
+
+export default Imageupload

@@ -1,0 +1,140 @@
+This service is working only within server side.
+
+
+Step(1):Install multer in server side by using below command:
+		npm install multer
+		 
+Step(2):Set Router by using below code:
+		router.route('/single').post(adminController.uploadImage);
+
+Step(3):Create a file upload.js inside middleware folder and paste below code inside upload.js file:
+		const multer = require('multer');
+		const path = require('path');
+		const storage = multer.diskStorage({
+		destination: './uploads/',     //need to create a folder name of uploads
+		filename: function (req, file, cb) {
+        //cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+        cb(null, Date.now() + "-" + file.originalname)
+        
+		}
+	});
+		const upload = multer({
+		storage: storage,
+		limits: { fileSize: 500000}, // Limit to 512kb 500000
+		fileFilter: function (req, file, cb) {
+        checkFileType(file, cb);
+		}
+	}).single('image');
+
+		function checkFileType(file, cb) {
+		// Allowed ext
+		const filetypes = /jpeg|jpg|png|svg|gif/;
+		// Check ext
+		const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+		// Check mime
+		const mimetype = filetypes.test(file.mimetype);
+
+		if (mimetype && extname) 
+		{
+			return cb(null, true);
+		} 
+		else 
+		{
+			cb('Please upload image Only!');
+		}
+	}
+
+	module.exports = upload;
+		 
+Step(3):Use below code inside controller:
+	const upload = require("../middlewares/upload")  //to upload file
+	
+	const uploadImage = async (req, res) => {
+	    upload(req, res, (err) => {
+        if(err) 
+        {
+            //res.status(400).json({ msg: err });
+            res.status(400).json({ imagesrc: '', imagename: '', imagestatus: 'selected', imagesize:"exceed", imageext: '' });
+        } 
+        else 
+        {
+            if (req.file == undefined) 
+            { 
+                res.status(400).json({ imagesrc: '', imagename: '', imagestatus: 'notselected', imagesize:'', imageext:'' });
+            } 
+            else 
+            {
+                const{path,filename} = req.file
+                const extension = filename.split('.').pop();
+                res.status(200).json({ imagesrc: path, imagename: filename, imagestatus: 'selected', imagesize:req.file.size, imageext: extension  });
+            }
+        }
+    });
+    
+	};
+	
+	module.exports = uploadImage;
+	
+Step(4):Use below code in front-end side(Imageupload.js):
+		import React,{useState} from 'react'
+
+		const Imageupload = ()=>{
+		const[img,setImg] = useState('');
+		const[previewimg,setpreviewimg] = useState('');
+		
+		const handleSubmit = async(e)=>{
+		e.preventDefault();
+		const formdata = new FormData();
+    	formdata.append("image",img); 
+		/* await fetch('http://localhost:5000/api/admin/single',{method:"POST",body:formdata})
+        .then((res)=>{res.json()})
+        .then((result)=>{console.log("result:",result)})
+        .catch((error)=>{console.log("error",error)}); */
+    
+		const imgresponse = await fetch('http://localhost:5000/api/admin/single',
+                        {
+                          method:"POST",
+                          body:formdata
+                        });
+        const imgfeedback = await imgresponse.json();
+		console.log("imagefeedback",imgfeedback);
+		
+			/* if(imgfeedback.imagesize === "exceed")   //we can also use this code in front-end side
+			 {
+			 	toast.error("Maximum file size is 512kb!");
+			 	setLoader(false);
+				
+			 }
+			 else if(imgfeedback.imageext === 'png' || imgfeedback.imageext === 'jpg' || imgfeedback.imageext === 'jpeg' || imgfeedback.imageext === 'svg' || imgfeedback.imageext === 'gif')
+			 {
+		
+			 }
+			 else
+			 {
+			 	toast.error("Please upload png,jpg,jpeg,svg and gif image only!");
+			 	setLoader(false);
+				
+			 } */
+		
+		//const categorywithimgstatus = {...category,...imgfeedback}   //to concatinate two obect to send data in server
+		//console.log("imagefeedbackwithdata",categorywithimgstatus);
+        console.log(img)
+		};
+  
+		return (
+		<div className="App">
+		<form onSubmit={handleSubmit} encType='multipart/form-data'>
+		<h2>File upload</h2>
+		<br/>
+		<input name="categoryimg" id="categoryimg" onChange={(e)=>{ setImg(e.target.files[0]); setpreviewimg(URL.createObjectURL(e.target.files[0])); }} type="file" accept="image/*" multiple="multiple" className="admin-control"  />
+		<br/>
+		{ previewimg ?  <img src={previewimg} style={{width:'100px'}} /> : '' }
+		<br/><br/>
+		<button type="submit" >Upload</button>
+		</form>
+		</div>
+		);
+	}
+
+	export default Imageupload
+		

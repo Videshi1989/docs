@@ -1,0 +1,30 @@
+// npm install react-csv
+
+
+import React from "react";
+import { CSVLink } from "react-csv";
+
+const DataTable = () => {
+  const data = [
+    { id: 1, name: "John Doe", age: 28, email: "john@example.com" },
+    { id: 2, name: "Jane Smith", age: 34, email: "jane@example.com" },
+    { id: 3, name: "Sam Green", age: 22, email: "sam@example.com" },
+  ];
+
+  const headers = [
+    { label: "ID", key: "id" },
+    { label: "Name", key: "name" },
+    { label: "Age", key: "age" },
+    { label: "Email", key: "email" },
+  ];
+
+  return (
+    <div>
+      <CSVLink data={data} headers={headers} filename={"datatable.csv"}>
+        Download as CSV
+      </CSVLink>
+    </div>
+  );
+};
+
+export default DataTable;

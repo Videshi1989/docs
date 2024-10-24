@@ -1,0 +1,95 @@
+											  /*  Creating Procedure */
+											
+	CREATE PROCEDURE [dbo].[proPackageOders]
+@MemID VARCHAR(20),@PackageName VARCHAR(20),@Qnty INT,@PackageAmt FLOAT,
+@ShipContactName VARCHAR(50),@ShipAdd VARCHAR(150),@ShipCity VARCHAR(50),@ShipState VARCHAR(50),@ShipPin VARCHAR(10),@ShipContact VARCHAR(15),
+@TranrtMode VARCHAR(20),@TranrtNo VARCHAR(20),@TranrtDate DATETIME,@TranrtSts VARCHAR(20),@DeliverToPerName VARCHAR(50),@DeliverOn DATETIME,
+@TxnType VARCHAR(20)
+AS
+BEGIN
+---
+SET NOCOUNT ON;
+---
+DECLARE @Rlt VARCHAR(10)='',@ErrMSG VARCHAR(150)=''
+---
+IF @TxnType='OrderProducts'
+BEGIN
+-----
+DECLARE @ORDERNo VARCHAR(20),@OrderDate DATETIME,@OrderStatus VARCHAR(20),@PaymentMode VARCHAR(20),@PaymentSts VARCHAR(20),
+@SGST FLOAT,@CGST FLOAT,@IGST FLOAT,@TotalAmt FLOAT
+-----@InvoiceNo VARCHAR(20),@InvoiceDt DATETIME,
+SET @OrderDate=DBO.getdateind()
+-----
+SET @ORDERNo=CONVERT(NUMERIC(8,0), RAND() * 89999999) + 1000000
+-----
+SET @SGST='0'
+SET @CGST='0'
+SET @IGST='0'
+SET @TotalAmt=@PackageAmt*@Qnty
+-----
+--INSERT INTO [tblPackageOders](MemID ,PackageName ,Qnty ,PackageAmt,PaymentMode,PaymentSts,
+--SGST,CGST,IGST,TotalAmt,ShipContactName,ShipAdd,ShipCity,ShipState,ShipPin,ShipContact,
+--TranrtMode,TranrtNo,TranrtDate,TranrtSts,DeliverToPerName,DeliverOn,InvoiceNo,InvoiceDt)
+DECLARE @CntPWD INT=0
+SELECT @CntPWD=COUNT(1) FROM MemDetail WITH (NOLOCK) WHERE MemID=@MemID AND Status='GREEN' AND ewalletPWD=@TranrtSts
+---
+DECLARE @ChkBal FLOAT=0
+SELECT @ChkBal=ISNULL(SUM(cr)-SUM(dr),0) FROM tblA_Wallet WITH (NOLOCK) WHERE memID=@MemID
+---
+IF @CntPWD=0
+BEGIN
+SET @Rlt='NotOK'
+SET @ErrMSG='Please check your transaction PWD!'
+END
+ELSE IF (CAST(@PackageAmt AS FLOAT)>ISNULL(@ChkBal,0))
+BEGIN
+SET @Rlt='NotOK'
+SET @ErrMSG='Please check your Shopping Wallet Balance!'
+END
+ELSE IF (@PackageAmt<=0 OR @Qnty=0 OR @ShipContact='')
+BEGIN
+SET @Rlt='NotOK'
+SET @ErrMSG='Please check your Shipping Address or ORDER Form Details!'
+END
+---
+ELSE
+	BEGIN
+		----
+		BEGIN TRY
+		BEGIN TRANSACTION TxnORD
+		----select * from [tblPackageOders]
+		INSERT INTO [tblPackageOders](MemID ,PackageName ,Qnty ,PackageAmt,PaymentMode,PaymentSts,ORDERNo,OrderStatus,
+		SGST,CGST,IGST,TotalAmt,ShipContactName,ShipAdd,ShipCity,ShipState,ShipPin,ShipContact,OrderDate)
+		SELECT @MemID,@PackageName,@Qnty,@PackageAmt,'Shopping Wallet','Done',@ORDERNo,'PENDING',@SGST,@CGST,@IGST,@TotalAmt,
+		@ShipContactName,@ShipAdd,@ShipCity,@ShipState,@ShipPin,@ShipContact,@OrderDate
+		-----
+		INSERT INTO tblA_Wallet(memid,TransDt,dr,cr,IncType,PayoutID,Investid,batchno)
+		SELECT @Memid,DBO.GETDATEIND(),CAST(@PackageAmt AS FLOAT),0,'Package Orders',@ORDERNo,@Qnty,@PackageName
+		-----
+		SET @Rlt='IsOK'
+		SET @ErrMSG='Thanks, Your order has been submitted, your order no is: '+CONVERT(VARCHAR,@ORDERNo)
+		-----
+		COMMIT TRANSACTION TxnORD
+		END TRY
+		BEGIN CATCH
+		ROLLBACK TRANSACTION TxnORD
+		-----
+		SET @Rlt='NotOK'
+		SET @ErrMSG=error_message()
+		-----
+		END CATCH
+		-----
+	END
+END
+---
+SELECT @Rlt Rlt,@ErrMSG ErrMSg
+---select * from tblPackageOders
+END
+--CREATE TABLE [dbo].[tblPackageOders]
+--(ID BIGINT IDENTITY(1,1),MemID VARCHAR(20),PackageName VARCHAR(20),Qnty INT,PackageAmt FLOAT,
+--ORDERNo VARCHAR(20),OrderDate DATETIME,OrderStatus VARCHAR(20),PaymentMode VARCHAR(20),PaymentSts VARCHAR(20),
+--SGST FLOAT,CGST FLOAT,IGST FLOAT,TotalAmt FLOAT,
+--ShipContactName VARCHAR(50),ShipAdd VARCHAR(150),ShipCity VARCHAR(50),ShipState VARCHAR(50),ShipPin VARCHAR(10),ShipContact VARCHAR(15),
+--TranrtMode VARCHAR(20),TranrtNo VARCHAR(20),TranrtDate DATETIME,TranrtSts VARCHAR(20),DeliverToPerName VARCHAR(50),DeliverOn DATETIME,
+--InvoiceNo VARCHAR(20),InvoiceDt DATETIME
+--)										

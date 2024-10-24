@@ -1,0 +1,24 @@
+﻿<html>
+<head>
+
+</head>
+
+<body onload="checkcookie();">
+  
+    <script>
+        function checkcookie()
+        {
+            document.cookie = "len=english;";   //set cookie name of len
+
+
+
+            var cookies = document.cookie.split(';').map(cookie => cookie.split('=')).reduce((accumulator,[key,value]) => ({...accumulator,[key.trim()]:decodeURIComponent(value)  }),{});    //get cookie
+            alert(cookies.len);
+        }
+
+
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+https://www.youtube.com/watch?v=UjPpvf4TNLI             //crash course link 1:28 min
+
+
+ (1) Setup: 
+     https://www.youtube.com/watch?v=KWgYD8tYexo          // setup video link
+     go to https://www.figma.com/  and create account. click on "Desktop app for Windows" in first section, it will start automatically download, after installation click on "Log in with Browser" than click on "Open the desktop app" than clik on "Open the figma" in alert box
+	 
+ (2) 
+     https://www.youtube.com/watch?v=JNZ0nkC7Unk       //Tutorial Link
+	 https://www.youtube.com/watch?v=UjPpvf4TNLI       //Tutorial Link	 
+	 https://www.youtube.com/watch?v=FxZFKSgpeBc&list=PLuou2gyfaGEud03tcppC1ofbYIcIEwKfm&index=1      //Tutorial Link
+	 
+	 
+ (3) Convert figma file to html, css [1st Way by TeleportHQ plugin]   [This is paid plugin]
+     https://www.youtube.com/watch?v=kxW62eMsw0k
+	 
+	  For plugin installation:
+	 (A)
+	    goto main menu >> goto plugins >> Find more plugins >> Search "TeleportHQ - Figma to code - Export HTML" >> click on "Run"
+
+     
+	 For conversion from figma file to html code:
+	 (B)
+	 Select the frame >> goto main menu >> goto plugins >> TeleportHQ - Figma to code - Export HTML >> click on "Export as a new project"	 
+ 
+ 
+ (4) Convert figma file to html, css, React [2nd Way by Locofy FREE BETA plugin]   [This is paid plugin]
+     https://www.youtube.com/watch?v=yzG-peWCq7Q
+	 
+	  For plugin installation:
+	 (A)
+	    goto main menu >> goto plugins >> Find more plugins >> Search "Locofy FREE BETA - Figma to React,React Native,HTML/CSS,Next.js,Gatsby,Vue" >> click on "Run"
+		
+	  For conversion from figma file to html code:
+	 (B)
+	 Select the frame >> goto main menu >> goto plugins >> Locofy FREE BETA - Figma to React,React Native,HTML/CSS,Next.js,Gatsby,Vue >> click on "Sync to Builder" >> click on "Start Sync" >> View code in Builder >> click on "Sync/Export/Deploy" >> Export Project	>> click on "Confirm code export"	
+	 
+	 
+ (5) Convert figma file to html, css, React [3rd Way by figma to html plugin]	 
+     same as previous
+
+(6)  install plugins like (menu>>plugin>>mangae plugin>>Browse more in community): fontawesome icon, Remove BG, unsplash (for getting images)
+ 

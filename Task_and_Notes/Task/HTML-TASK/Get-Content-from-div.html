@@ -1,0 +1,28 @@
+<html>
+	<head>
+	
+	</head>
+	
+	<body>
+		 <div id="GetId">
+			<input type="checkbox" onclick="GetData();" /> What is chat GPT?	
+		 </div>
+		 
+		 <input type="hidden" id="str"  />
+		 
+		 <script>
+		function GetData()
+		{
+		   var node = document.getElementById('GetId');
+		   htmlContent = node.innerHTML;
+		   textContent = node.textContent;
+
+			document.getElementById('str').value=textContent;
+		   alert(htmlContent);
+		   alert(textContent);
+		}
+	
+	</script>
+	</body>
+
+</html>

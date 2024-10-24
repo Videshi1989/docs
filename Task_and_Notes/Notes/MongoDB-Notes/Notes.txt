@@ -1,0 +1,36 @@
+************************************************** Mongo-DB-setup************************************************
+
+
+https://www.youtube.com/watch?v=dEm2AS5amyA&t=132s      //youtube link for setup
+
+https://www.youtube.com/watch?v=XeDM28c5kO4&list=PLwGdqUZWnOp1P9xSsJg7g3AY0CUjs-WOa     //mongodb tutorial link thapa technical 2020
+
+https://www.youtube.com/watch?v=rU9ZODw5yvU   //mongodb tutorial thapa technical 2024
+
+
+(1) Open below link:
+
+	https://www.mongodb.com/try/download/community
+	
+	click on "Select Package" >> download (Package should be msi)>> rignt click on file >> click on "install" >> click on "connect"
+	
+	
+(2) Set environment path:
+    go to c:drive >> program files >> mongodb >> server >> 4.4 or above >> bin
+   
+    and copy the path
+
+(3) Search on window "Edit the system environment variables" and go to it >> click on "Environment variable" >> select "path" in 
+    user variable  section >> Edit >> New >> Paste the path and click on "ok" >> ok
+	
+(4) search "mongodb shell for window" in google >> click on "MongoDB Shell Download" >>extract file >> 
+    copy "mongosh" file(with in bin folder) and paste this file with in c drive bin folder (c:drive >> program files >> mongodb >> server >> 4.4 or above >> bin)
+	
+(4) Open command prompt by "cmd" command:
+
+    Run	below commands:
+	
+	mongosh 
+	
+	Note: To show available database run below command:
+	      show databases

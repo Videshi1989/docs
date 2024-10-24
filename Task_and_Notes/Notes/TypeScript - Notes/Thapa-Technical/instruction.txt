@@ -1,0 +1,48 @@
+Turorial link:  https://www.youtube.com/watch?v=Xciunyug99U&list=PLwGdqUZWnOp0xfHQFmlL52b_6-QZ0mnk_
+
+
+Installation:
+
+(1)	Install node js:
+Open below link:
+https://nodejs.org/en/
+and install it. To check node js is install or not , hit below command on command prompt:
+node -v
+
+(2)	Install vs code editor by using below link:
+https://code.visualstudio.com/download
+
+(3)	Install type script:
+Create a project folder (with any name) than go to inside project folder by vs code using terminal (ctrl + ~) and than hit below command:
+npm install -g typescript
+
+To check that typescript is installed or not, hit below command inside project folder with in vs code:
+tsc --v 
+
+Suppose that we have a folder name of TS , then open this folder with in vs code:
+Create a new index.ts inside TS folder and paste below code:
+
+console.log("welcome to typescript");
+let num = 5;    
+/*  where number is datatype or type annotation, if we will not declare datatype then it will automatically consiter number according to value */
+
+num = 55;
+
+than we need to compile than we need to run .
+
+
+(4)	To compile:
+
+Run below command in terminal of vs code inside project folder (TS):
+tsc index.ts
+
+Note: 
+(1)	It will generate index.js file automatically.
+(2)	if we will use only tsc command then it will compile all files. 
+
+(5)	To Run:
+Run below command in terminal of vs code inside project folder(TS):
+node index.js
+
+
+

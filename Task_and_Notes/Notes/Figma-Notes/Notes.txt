@@ -1,0 +1,24 @@
+https://www.youtube.com/watch?v=UjPpvf4TNLI                                      //Figma - Another writer
+	
+https://youtu.be/JNZ0nkC7Unk							 //Figma - thapa
+
+(1) To create bootstrap 12 grids views (so that we can create a design according to bootstrap): 
+    Create a frame >> click on top right (zoom/view options) >> checkmark on Layout grids >> In right side click on + icon of Layout Grid >>
+	it will auto create a grid with 9 dots >> click on 9 dots >> select columns >> count should be 12 , Gutter should be 30 and margon should be 130 than press enter
+	
+    Note: we can show and hide by view icon	
+
+(2) To create navigation:
+    create a button or image or any thing inside frame >> select the button >> click on "prototype"(top section on right side) >> hover mouse on the button  
+    (we will see  + icon) >> aftr clicking drag the plus icon towards the screen where we want to go. 
+
+    For animation:
+    click on prototype >> click on "click" >> select any one option instead of "instant"	
+
+(3) To play or view the screen:
+    On top section right side >> select Present or Preview.
+
+(4) Scrolling Effect:
+    create multiple boxes/circles in row/colum wise >> select all shapes >> right click >> Frame selection >> play and check
+	 
+(5) Create component:

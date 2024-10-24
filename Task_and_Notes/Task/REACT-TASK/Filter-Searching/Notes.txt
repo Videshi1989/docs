@@ -1,0 +1,135 @@
+import React from 'react'
+
+
+
+const Filter = () => {
+
+	const[allrecords,setAllRecords] = useState([]);
+	const[records,setRecords] = useState([]);
+	setAllRecords(
+	[ 
+		{_id: '66debd3271eac9d4463f51a1', fullname: 'Ravi Nahak', email: 'ravi@gmail.com', mobileno: 9713098765, password: '$2a$10$PVhdg3UTFR8Msviucj/Dm.rTv626StF0LKOicpIVyZ3vdrvjBYS9e'},
+		 {_id: '66e048e13d5081340ca4539d', fullname: 'Rohit Nayak', email: 'rohit@gmail.com', mobileno: 7878787878, password: '$2a$10$AArSfKrrthn5YwOwZ9LthOxYw2Hl9JC91.09P7.n5syJpQxmOp38q'}
+	]);
+	
+	setRecords(
+	[ 
+		{_id: '66debd3271eac9d4463f51a1', fullname: 'Ravi Nahak', email: 'ravi@gmail.com', mobileno: 9713098765, password: '$2a$10$PVhdg3UTFR8Msviucj/Dm.rTv626StF0LKOicpIVyZ3vdrvjBYS9e'},
+		 {_id: '66e048e13d5081340ca4539d', fullname: 'Rohit Nayak', email: 'rohit@gmail.com', mobileno: 7878787878, password: '$2a$10$AArSfKrrthn5YwOwZ9LthOxYw2Hl9JC91.09P7.n5syJpQxmOp38q'}
+	]);
+	
+	const columns=[
+        {
+            name:"NAME",
+            selector:row=>row.fullname,   //fullname is colum name of table
+            sortable:true,
+       
+        },
+        {
+            name:"EMAIL",
+            selector:row=>row.email,
+            sortable:true,
+			filter:true
+        },
+        {
+            name:"MOBILE NO.",
+            selector:row=>row.mobileno,
+            sortable:true
+        }
+		,
+		{
+            name:"USER TYPE",
+            selector:row=>row.usertype,
+            sortable:true
+        },
+        {
+            name:"STATUS",
+            selector:row=>row.status,
+            sortable:true
+        },
+		{
+            name:"ACTION", 
+			selector:row=>row._id,
+			cell: cellinfo =>([<HiEye title='View' className='actioniconview' onClick={()=> ShowpopupView(cellinfo._id)} />,<MdEdit title='Edit'  className='actionicon' onClick={()=> ShowpopupEdit(cellinfo._id)}  />, " ", <RiDeleteBin6Line title='Delete' style={{pointerEvents:'none',opacity:'0.5'}} className='actionicon' onClick={()=> ShowpopupDelete(cellinfo._id)} />]),
+		
+        }
+       ];
+
+    function handleFilter(event)
+       {
+			
+            if(allrecords.length === 0 || allrecords.length === undefined || allrecords.length === null)
+			{
+				
+				return null;
+			}
+			else
+			{
+				if(event.target.value !== '')
+            	{
+                	const newData = allrecords.filter(row=>{
+						return(
+							   row.fullname.toLowerCase().includes(event.target.value.toLowerCase()) ||
+							   row.email.toLowerCase().includes(event.target.value.toLowerCase()) ||
+							   row.mobileno.toString().toLowerCase().includes(event.target.value.toLowerCase()) ||
+							   row.usertype.toLowerCase().includes(event.target.value.toLowerCase()) ||
+							   row.status.toLowerCase().includes(event.target.value.toLowerCase())
+							 );
+							 
+										/*   for single colum
+										
+										
+										
+										return(
+							   row.fullname.toLowerCase().includes(event.target.value.toLowerCase())
+							  
+							 );
+										
+										
+										
+										
+										*/
+							 
+							 
+							 
+							 
+							 
+					   });
+                	setRecords(newData);
+					
+            	}
+            	else
+				{
+                	setRecords(allrecords);
+					
+            	}
+			}
+	
+       }
+	   
+	   
+	   return(
+		<>
+									<div>
+									<small>Search by name</small>
+									<input type="text" onChange={handleFilter} className='form-control' placeholder='Search by name' />
+									</div>
+									
+									<DataTable 
+               							data={records.length === 0 || records.length === undefined ? '' : records} 
+			   							columns={columns}
+			   							fixedHeader
+			   							pagination  
+			   							highlightOnHover
+			   							customStyles={customStyles}
+			  						/> 
+									
+									
+									
+		</>
+	   
+	   )
+	   
+	}
+	
+	export default Filter

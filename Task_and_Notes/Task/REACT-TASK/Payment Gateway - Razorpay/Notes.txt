@@ -1,0 +1,264 @@
+This service is working only within server(backend) side:
+
+youtube link:
+https://www.youtube.com/watch?v=ziWlZdij8Gg              
+
+Reference link:
+https://razorpay.com/      or       https://accounts.razorpay.com/auth/     //create account
+email: videshi.muduli@gmail.com
+pwd: Razor@infusai$768
+
+
+
+Step (1): install razorpay in Back-end(server side) by using below command:
+		  npm install razorpay
+		  
+Step (2): Follow below code for Front-end:
+
+		import './App.css';
+		import React,{useState} from 'react';
+
+
+		function App() {
+  
+		const [amount, setamount] = useState('');
+		const [paymentid, setpaymentid] = useState('');
+
+		const handleSubmit = async(e)=>{
+		e.preventDefault();
+		if(amount === ""){
+		alert("please enter amount");
+		}else{
+		var options = {
+        key: "rzp_test_qEkHVlyzcqbn7E",             //put the key or key_id
+        key_secret:"SKsOglKEyciQpZrprgeSXovt",      //put the key_secret
+        amount: amount * 100,                       // keep it * 100
+        currency:"INR",
+        name:"STARTUP_PROJECTS",                    //put project name
+        description:"for testing purpose",
+        image:"https://d2c12hljnbvhtv.cloudfront.net/images/infusai-logo.png?ver=1.1",  //put logo link
+       
+        handler: async function(response){  
+        //  alert(response.razorpay_payment_id); //get payment id
+        setpaymentid(response.razorpay_payment_id); 
+        console.log("Response:",response);          // it returns only payment id
+        
+        },
+        prefill: {       //enter customer details
+          name:"Velmurugan",
+          email:"mvel1620r@gmail.com",
+          contact:"7904425033"
+        },
+        notes:{
+          address:"Razorpay Corporate office"
+        },
+        theme: {
+          color:"red"          //set rezorpay theme color
+        }
+		};
+      var pay = new window.Razorpay(options);
+      pay.open();
+		}
+		};
+
+
+
+	const GetPaymentDetails = async(e)=>{
+   
+	e.preventDefault();
+  
+	const response = await fetch(`http://localhost:5000/payment/${paymentid}`,{
+    method:"POST",
+    headers: {'Content-Type':'application/json'}
+
+	});
+  
+  const order = await response.json();   
+  console.log("order res",order); 
+	}; 
+
+
+
+  return (
+    <div className="App">
+     <h2>Razorpay Payment Integration Using React</h2>
+     <br/>
+     <input type="text" placeholder='Enter Amount' value={amount} onChange={(e)=>setamount(e.target.value)} />
+     <br/><br/>
+     <button onClick={handleSubmit}>submit</button>
+
+     <br/><br/><br/><br/>
+     <button onClick={GetPaymentDetails}>Get payment details</button>
+
+    </div>
+	);
+
+
+
+	}
+
+export default App;
+		  
+       
+Step (3): Add below script in index.html file under public folder for Front-end:
+
+	      <script src="https://checkout.razorpay.com/v1/checkout.js"></script>       //add header or end of body tag
+		  
+		  
+Step (4): Follow below code for Back-end:	  
+		  
+		  	const Razorpay = require("razorpay");
+
+			app.post("/payment/:id",async (req,res)=>{
+			const paymentId = req.params.id;
+			const razorpay = new Razorpay({
+				key_id:"rzp_test_qEkHVlyzcqbn7E",                   //put key_id
+				key_secret:"SKsOglKEyciQpZrprgeSXovt"				//put key_secret
+			});
+			try
+			{
+				const payment = await razorpay.payments.fetch(paymentId);
+				if(!payment)
+				{
+					res.status(401).json({msg:"Error: Razorpay payment not loading"});
+					console.log("Not able to fetch payment details")
+					return;
+				}
+				else
+				{
+					return res.json({
+						status: payment.status,
+						method: payment.method,
+						amount: payment.amount,       //devide amount by 100 to get actual amount
+						currency: payment.currency
+					});
+
+				}
+			}
+			catch(error)
+			{
+				res.status(401).json({msg:error});
+				console.log("internal error:",error)
+				return;
+			}
+		
+			});
+			
+			
+			
+			
+			
+	Note:
+	For getting refund or cancellation(customer side) we need to follow below instruction or contact Razorpay customer care.
+	
+	
+
+	Reference link:
+	https://razorpay.com/docs/api/refunds/create-normal
+	https://razorpay.com/docs/api/refunds/create-instant/
+
+	/*
+
+  curl -u [YOUR_KEY_ID]:[YOUR_KEY_SECRET] \
+-X POST https://api.razorpay.com/v1/payments/pay_29QQoUBi66xm2f/refund \
+-H 'Content-Type: application/json' \
+-d '{
+  "amount": 500100
+}'
+
+
+
+////success case
+{
+  "id": "rfnd_FP8QHiV938haTz",
+  "entity": "refund",
+  "amount": 500100,
+  "receipt": "Receipt No. 31",
+  "currency": "INR",
+  "payment_id": "pay_29QQoUBi66xm2f",
+  "notes": [],
+  "receipt": null,
+  "acquirer_data": {
+    "arn": null
+  },
+  "created_at": 1597078866,
+  "batch_id": null,
+  "status": "processed",
+  "speed_processed": "normal",
+  "speed_requested": "normal"
+}
+
+
+///failure case
+{
+    "error": {
+        "code": "BAD_REQUEST_ERROR",
+        "description": "The amount must be atleast INR 1.00",
+        "source": "business",
+        "step": "payment_initiation",
+        "reason": "input_validation_failed",
+        "metadata": {},
+        "field": "amount"
+    }
+}
+
+
+  */
+
+
+
+/*
+
+//instant refund
+
+curl -u [YOUR_KEY_ID]:[YOUR_KEY_SECRET] \
+-X POST https://api.razorpay.com/v1/payments/pay_29QQoUBi66xm2f/refund \
+-H 'Content-Type: application/json' \
+-d '{
+  "amount":500100,
+  "speed":"optimum",
+  "receipt":"Receipt No. 31",
+  "notes":{
+    "notes_key_1":"Tea, Earl Grey, Hot",
+    "notes_key_2":"Tea, Earl Grey… decaf."
+  }
+}'
+
+
+
+//success case
+{
+  "id": "rfnd_FP8R8EGjGbPkVb",
+  "entity": "refund",
+  "amount": 500100,
+  "currency": "INR",
+  "payment_id": "pay_29QQoUBi66xm2f",
+  "notes": {
+    "notes_key_1": "Tea, Earl Grey, Hot",
+    "notes_key_2": "Tea, Earl Grey… decaf."
+  },
+  "receipt": "Receipt No. 31",
+  "acquirer_data": {
+    "arn": null
+  },
+  "created_at": 1597078914,
+  "batch_id": null,
+  "status": "processed",
+  "speed_processed": "normal",
+  "speed_requested": "optimum"
+}
+
+
+//failure case
+{
+    "error": {
+        "code": "BAD_REQUEST_ERROR",
+        "description": "iajoiosjdajsd is not a valid id",
+        "source": "business",
+        "step": "payment_initiation",
+        "reason": "input_validation_failed",
+        "metadata": {}
+    }
+}
+
+*/

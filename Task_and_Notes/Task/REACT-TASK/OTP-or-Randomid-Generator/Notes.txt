@@ -1,0 +1,22 @@
+This service is working only within server(backend) side.
+
+Step(1): install otp generator by below command:
+		 npm i otp-generator
+		 
+Step(2): use below code for generating otp:
+		 const otpGenerator = require('otp-generator')
+		 const otp = otpGenerator.generate(6, { digits: true, lowerCaseAlphabets: false, upperCaseAlphabets: false, specialChars: false });
+         console.log("OTP is=",otp)
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+												OR
+												
+		We can use below code with in client(front-end) side and server(backend) both side without any installation:
+
+			    const otp = Math.floor(100000 + Math.random()*900000);
+			    console.log("Random id is=",otp)

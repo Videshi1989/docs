@@ -1,0 +1,34 @@
+<html>
+    <head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	</head>
+	
+	<body>
+	
+
+   enter age
+   
+   <input type="text" onchange="chk_age(this.value)" onpaste="return false" />
+
+
+
+<script>
+function chk_age(ch_age)
+{
+    if (!$.isNumeric(ch_age))
+    {
+       
+        alert("this is not number");
+      
+    }
+   
+    else {
+	alert("this is number");
+      
+    }
+}
+</script>
+	</body>
+
+
+</html>

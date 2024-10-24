@@ -1,0 +1,15 @@
+For React js:
+
+Step(1): create .env file on root location:
+         then we can declare varible like this:
+		 
+		 REACT_APP_ADMIN_URL = http://localhost:5000/api/admin
+		 REACT_APP_USER_URL = http://localhost:5000/api/auth
+		 
+		Note: It must be prefix with REACT_APP
+		
+Step(2): we can use any where in front-end side like this:
+		process.env.REACT_APP_ADMIN_URL
+		process.env.REACT_APP_USER_URL
+		
+		Note: restart the server

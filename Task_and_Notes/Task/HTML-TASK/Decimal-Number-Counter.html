@@ -1,0 +1,30 @@
+﻿<html>
+<head>
+   
+</head>
+
+<body>
+    
+    <p id="decimals"></p>    
+ 
+   
+	<script src="https://code.jquery.com/jquery-1.7.0.min.js"></script>
+    <script src="https://aishek.github.io/jquery-animateNumber/javascripts/jquery.animateNumber.js"></script>
+    <script>
+        $('#decimals')
+  .animateNumber(
+    {
+        number: 2500,
+        numberStep: function (now, tween) {
+            // see http://stackoverflow.com/a/14428340
+            var formatted = now.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+            $(tween.elem).text('$' + formatted);
+        }
+    },
+    20000
+  );
+    </script>
+
+
+</body>
+</html>

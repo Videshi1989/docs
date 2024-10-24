@@ -1,0 +1,32 @@
+
+/* Create and Alter TABLE */
+
+
+
+
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[FrRepur_Com_tblProductStock](
+	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[ProdID] [varchar](30) NOT NULL,
+	[TransDt] [datetime] NULL,
+	[Dr] [float] NULL,
+	[Cr] [float] NULL,
+	[Order_billNo] [varchar](15) NULL,
+	[Remark] [varchar](250) NULL,
+	[companyId] [varchar](15) NULL,
+	[BillId] [varchar](15) NULL,
+	[OrderNo] [varchar](50) NULL,
+	[FranchiseId] [varchar](50) NULL,
+	[ProType] [varchar](20) NULL
+) ON [PRIMARY]
+
+GO

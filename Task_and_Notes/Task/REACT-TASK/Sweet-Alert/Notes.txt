@@ -1,0 +1,106 @@
+import React from 'react';
+import swal from 'sweetalert';
+
+
+// npm i sweetalert
+// https://www.npmjs.com/package/sweetalert
+// icon : "warning" or "success" or "error" or attch link inside double quotes
+// button : "ok" or "cancel" or "continue"
+
+const Sweetalert = () => {
+    
+    const ShowSweetAlert = () => {
+
+        swal({
+            title: "Are you sure?",
+            text: "Are you sure that you want to leave this page?",
+            icon: "warning",
+            dangerMode: true,
+            buttons: {
+                cancel: 'cancel',
+                ok: 'ok'
+            }
+          }).then(option => {
+            switch (option){
+                case 'ok':
+                    swal("Deleted!", "Your imaginary file has been deleted!", "success");
+                    break;
+                case 'cancel':
+                    break;
+            }
+        })
+    
+
+    }
+	
+	
+	/*    OR
+	
+	
+	 const res = await swal({
+		title: "Delete Record ?",
+		text: "Are you sure to delete this record ?",
+		icon: "warning",
+		dangerMode: true,
+		
+		buttons: {
+			cancel: 'cancel',
+			ok: 'ok'
+		}
+	  })
+	 if(res)
+	 {
+		setLoader(true);
+	    try
+		{
+			const response = await fetch(`${ADMINAPI}/deletecategory/${getid}`,{
+				method : 'DELETE',
+				headers : { Authorization : authorizationToken }
+			});
+			//const res_data = await response.json();
+			//console.log("response data",res_data);
+			if(response)
+			{
+				getAllRecords();
+				setLoader(false);
+				swal("Deleted!", "Record has been deleted!", "success");
+			   // toast.success(res_data.msg);
+				//ClosepopupDelete();
+				//setTimeout(() => { ClosepopupDelete() }, 2000);
+
+			}
+			else
+			{
+				swal("Oops!", "res_data.msg", "error");
+				//toast.error(res_data.msg);
+				setLoader(false);
+			}
+	  
+		}
+		catch(error)
+		{
+			swal("Error!", error, "error");
+			//console.log("delete-error",error)
+			//toast.error(error);
+			setLoader(false);
+		}
+	 }
+	 else
+	 {
+		
+	 }	
+	
+	
+	*/
+	
+
+
+
+    return (
+        <div>
+                <button onClick={ShowSweetAlert}>Sweet Alert</button>
+        </div>
+    );
+};
+
+export default Sweetalert;

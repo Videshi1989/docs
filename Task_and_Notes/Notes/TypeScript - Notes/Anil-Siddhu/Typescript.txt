@@ -1,0 +1,50 @@
+
+https://www.youtube.com/watch?v=Xciunyug99U&list=PLwGdqUZWnOp0xfHQFmlL52b_6-QZ0mnk_&index=1			//youtube tutorial link (4 completed)
+
+https://www.youtube.com/watch?v=SVFjgV2F_io&list=PL8p2I9GklV44eT51JPju4LsTQlce6DPtx&index=1         //Anil Siddhu (completed)
+																								
+
+
+(1) Install Node js    
+	https://nodejs.org/en
+	
+	To check nodejs by below command:
+	node -v
+	
+(2) Install Typescript
+	https://www.typescriptlang.org/
+	
+	click on "Try Typescript Now Online Or via npm"
+	
+	copy and paste below command inside folder location:
+	
+	npm install -g typescript
+	
+	To check nodejs by below command:
+	tsc --v
+	
+(3) create a ts or tsx file, write code, compile and attach in html file and check it.
+										OR
+	we can run directly.
+
+	Note:
+	go to inside folder by command then:
+	(1) to compile a perticular file we use below command(it will gererate js file):
+	     tsc index.ts           //index.ts is a file name
+		 
+	(2) to compile all files we use below command(it will gererate js file):
+         tsc
+
+    (3) To run we use node instead of tsc
+        ex:	  node index.js
+		
+	(4) we need to declare type for variable, function ,......so many	
+	(5) for ubantu(operating system) or mac we use sudo, exp: tsc sudo index.ts 
+	
+
+(4) if error exist and we don't want to gererate js file then we need to hit below command:
+    tsc --init
+
+    then it will generate json file, go to the json file, find 'noEmitOnError' and enable it.
+	and use below command for compiling:
+	tsc --noEmitOnError index.ts

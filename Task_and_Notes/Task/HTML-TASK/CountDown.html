@@ -1,0 +1,60 @@
+<html>
+<head>
+<title>Count Down</title>
+<style>
+li 
+{
+  display: inline-block;
+  font-size: 1.5em;
+  list-style-type: none;
+  padding: 1em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+li span 
+{
+  display: block;
+  font-size: 4.5rem;
+}
+</style>
+</head>
+<body>
+ <ul>
+    <li><span id="days"></span>days</li>
+    <li><span id="hours"></span>Hours</li>
+    <li><span id="minutes"></span>Minutes</li>
+    <li><span id="seconds"></span>Seconds</li>
+</ul>
+  
+<script>
+const second = 1000,
+      minute = second * 60,
+      hour = minute * 60,
+      day = hour * 24;
+
+let countDown = new Date('Dec 25, 2022 00:00:00').getTime(),
+    x = setInterval(function(){
+
+    let now = new Date().getTime(),
+    distance = countDown - now;
+
+    document.getElementById('days').innerHTML = Math.floor(distance / (day)),
+    document.getElementById('hours').innerHTML = Math.floor((distance % (day)) / (hour)),
+    document.getElementById('minutes').innerHTML = Math.floor((distance % (hour)) / (minute)),
+    document.getElementById('seconds').innerHTML = Math.floor((distance % (minute)) / second);
+		
+     
+    //do something later when date is reached
+    /*if (distance < 0) 
+	{
+      clearInterval(x);
+      alert('This is my birthday');
+    }*/
+
+    }, second)
+</script>
+
+<!--  https://codepen.io/ascarb1/pen/NwxXEK  -->
+</body>
+</html>

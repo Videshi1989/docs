@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>check country , state , city</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+<div id="banner-message">
+  <p>Your city : <span id="city"></span></p>
+  <p>Your state : <span id="state"></span></p>
+  <p>Your country : <span id="country"></span></p>
+  <button></button>
+</div>
+<script>
+function geoip(data){
+  document.getElementsByTagName('button')[0].innerHTML=data.country;
+  $('#city').html(data.city);
+  $('#state').html(data.region);
+  $('#country').html(data.country);
+  
+}
+</script>
+<script async src="https://get.geojs.io/v1/ip/geo.js"></script>
+<!-- Heat this api to get all details -->
+</body>
+</html>

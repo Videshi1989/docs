@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+    
+        .tab-nav-wrapper {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .tab1-c, .tab2-c, .tab3-c, .tab4-c {
+            display: none;
+        }
+
+        ul li {
+            display: inline;
+            text-align: center;
+        }
+
+        a {
+            display: inline-block;
+            width: 25%;
+            padding: .75rem 0;
+            margin: 0;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .two:hover ~ hr {
+            margin-left: 25%;
+            background: orange;
+        }
+
+        .three:hover ~ hr {
+            margin-left: 50%;
+            background: yellow;
+        }
+
+        .four:hover ~ hr {
+            margin-left: 75%;
+            background: red;
+        }
+
+        hr {
+            height: .25rem;
+            width: 25%;
+            margin: 0;
+            background: tomato;
+            border: none;
+            transition: .3s ease-in-out;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="tab-nav-wrapper">
+        <ul>
+            <li class="one"><a href="#">ONE</a></li>
+            <!--
+            -->
+            <li class="two"><a href="#">TWO</a></li>
+            <!--
+            -->
+            <li class="three"><a href="#">THREE</a></li>
+            <!--
+            -->
+            <li class="four"><a href="#">FOUR</a></li>
+            <hr />
+        </ul>
+    </div>
+    <div class="tab-content-wrapper">
+        <div class="tab1-c"><p>This is ONE</p></div>
+        <div class="tab2-c"><p>This is TWO</p></div>
+        <div class="tab3-c"><p>This is THREE</p></div>
+        <div class="tab4-c"><p>This is FOUR</p></div>
+
+        <div>
+
+
+            <script>
+                $('.tab-nav-wrapper ul li a').click(function () {
+                    $('.tab-content-wrapper > div').hide();
+                    $('.tab-content-wrapper > div').eq($(this).parent().index()).show();
+                });
+            </script>
+</body>
+</html>

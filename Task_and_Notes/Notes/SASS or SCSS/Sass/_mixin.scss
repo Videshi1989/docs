@@ -1,0 +1,9 @@
+@mixin repeatproperty              //mixin declaration without parameter
+{
+    border:1px solid;
+}
+
+@mixin spacing($para1)            //mixin declaration with parameter (we can pass multiple parameter)
+{
+    letter-spacing: $para1;
+}

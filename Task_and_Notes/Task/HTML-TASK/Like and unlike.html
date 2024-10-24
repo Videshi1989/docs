@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        #ss2 
+        {
+            display: none;
+        }
+        .dil 
+        {
+            color: #fc9321;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div id="ss1"><i onclick="myFunction();" class="fa fa-heart-o" aria-hidden="true"></i></div>
+    <div id="ss2"><i onclick="myFunction2();" class="fa fa-heart dil" aria-hidden="true"></i></div>
+
+    
+    
+    <script>
+        function myFunction()
+        {
+
+            if ($('#ss1').css('display') === 'block')
+            {
+                $('#ss1').css('display', 'none');
+                $('#ss2').css('display', 'block');
+            }
+        }
+
+        function myFunction2()
+        {
+
+            if ($('#ss2').css('display') === 'block')
+            {
+                $('#ss2').css('display', 'none');
+                $('#ss1').css('display', 'block');
+            }
+        }
+    </script>
+
+</body>
+</html>

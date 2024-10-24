@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>How To Convert Speech To Text In jQuery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" />
+</head>
+
+<body class="bg-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h5>Speech to Text in Javascript</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <textarea name="" readonly id="textbox" rows="6" class="form-control">
+                                </textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <button id="start-btn" class="btn btn-success btn-block">Start</button>
+                                <button id="create" class="btn btn-danger btn-block" style="display: none">End</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p id="instration">Press Start Voice Recognition</p>
+                                <a download="speech.txt" id="downloadlink" style="display: none">Download Speech</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        var SpeechRecogntion = window.webkitSpeechRecognition;
+
+        var recognition = new window.SpeechRecogntion();
+
+        var textbox = $('#textbox');
+
+        var instration = $('#instration');
+
+        var content = '';
+
+        recognition.continuous = true
+
+        recognition.onstart = function() {
+            instration.text('Voice Recognition is on')
+        }
+
+        recognition.onspeechend = function() {
+            instration.text('No Activity');
+        }
+
+        recognition.onerror = function(event) {
+            instration.text('Try Again');
+            console.log(event);
+        }
+
+        recognition.onresult = function(event) {
+            var current = event.resultIndex;
+            var transcript = event.results[current][0].transcript;
+            var confidence = event.results[current][0].confidence;
+            console.log(transcript);
+            content += transcript;
+            $('#textbox').val(content);
+        };
+
+
+        $('#start-btn').click(function(event) {
+            if (content.length) {
+                content += ''
+            }
+            $('#textbox').val('Welcome To Online Web Tutor');
+            $('#downloadlink').css('display', 'none');
+            $('#create').css('display', 'block');
+            $(this).css('display', 'none');
+            recognition.start()
+        });
+
+
+        var textFile = null,
+            makeTextFile = function(text) {
+                var data = new Blob([text], {
+                    type: 'text/plain'
+                });
+
+                // If we are replacing a previously generated file we need to  
+                // manually revoke the object URL to avoid memory leaks.  
+                if (textFile !== null) {
+                    window.URL.revokeObjectURL(textFile);
+                }
+
+                textFile = window.URL.createObjectURL(data);
+
+                return textFile;
+            };
+
+
+        var create = document.getElementById('create'),
+            textbox = document.getElementById('textbox');
+
+        create.addEventListener('click', function() {
+            var link = document.getElementById('downloadlink');
+            link.href = makeTextFile(textbox.value);
+            link.style.display = 'block';
+            $('#start-btn').css('display', 'block');
+            $('#create').css('display', 'none');
+            recognition.stop()
+            content = '';
+            $('#instration').text('Press Start Voice Recognition');
+        }, false);
+    </script>
+</body>
+
+</html>

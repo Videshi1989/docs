@@ -1,0 +1,50 @@
+
+(1) Validator
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtEmailid" ErrorMessage="Please enter email address.">*</asp:RequiredFieldValidator>	
+	
+(2) Validator for email
+    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEmailid" ErrorMessage="Enter Correct MailId." ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">*</asp:RegularExpressionValidator>
+
+(3) Validator
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtnews"
+    ErrorMessage="ENTER NEWS " SetFocusOnError="True">*</asp:RequiredFieldValidator>
+
+(4) Label
+    <asp:Label ID="lblDOB" runat="server" Font-Bold="True" Visible="False"></asp:Label> 	
+	
+
+(5) Text-Field
+    <asp:TextBox ID="txtFirstName" runat="server" MaxLength="150"></asp:TextBox>
+
+(6) Text-Area
+     <asp:TextBox ID="ADDRESS" runat="server" Height="149px" TextMode="MultiLine" Width="328px"></asp:TextBox>
+	
+
+(7) Radio Button
+    <asp:RadioButtonList ID="rdgender" runat="server" CellPadding="0" CellSpacing="0" RepeatDirection="Horizontal">
+                            <asp:ListItem Selected="True" Value="0">Male</asp:ListItem>
+                            <asp:ListItem Value="1">Female</asp:ListItem>
+    </asp:RadioButtonList>
+
+(8) Dropdown(Select Tag)
+    <asp:DropDownList ID="EatingHabits" runat="server">
+                           
+                           <asp:ListItem Value="Vegetarian">Vegetarian</asp:ListItem>
+                           <asp:ListItem Value="Non-Vegetarian">Non-Vegetarian</asp:ListItem>
+                            <asp:ListItem Value="Eggetarian">Eggetarian</asp:ListItem>
+    </asp:DropDownList>
+	
+(9) Button 
+    <asp:Button ID="btnpass" runat="server" Font-Bold="False" OnClientClick="return Check();"
+    Font-Names="Verdana" OnClick="btnpass_Click" Text="Submit" Width="78px" CssClass="OuterBtn" />	
+	
+(10) Link Button
+    <asp:LinkButton ID="linkbtn" runat="Server" CausesValidation="false" CommandName="delete" Text="Remove"></asp:LinkButton>	
+	
+(11) Check Box
+     <asp:CheckBox ID="Acting" runat="server" Text="Acting" value="Acting"/>
+
+	 
+	 
+	 
+	

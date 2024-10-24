@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JavaScript Split a String from Space</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    
+    <h3 style="color:32A80F" id="result" align="center"></h3>
+    <input class="text-input text-input-md2" id="EditDOB" dir="auto" type="text" autocomplete="off" onblur="ageCalculator()" placeholder="">
+
+    <!--Datepicker-->
+    <script type="text/javascript">
+
+
+
+
+
+        //var dobDate = document.getElementById('startdate');
+        function ageCalculator() {
+
+            var userinput = document.getElementById("EditDOB").value;  //pass date of birth
+
+            var dob = new Date(userinput);
+
+
+            if (userinput == null || userinput == '') {
+
+                return false;
+            }
+
+                //execute if the user entered a date
+            else {
+
+                var dobYear = dob.getYear();
+                var dobMonth = dob.getMonth();
+                var dobDate = dob.getDate();
+
+
+                var now = new Date();
+
+                var currentYear = now.getYear();
+                var currentMonth = now.getMonth();
+                var currentDate = now.getDate();
+
+
+                var age = {};
+                var ageString = "";
+
+
+                yearAge = currentYear - dobYear;
+
+
+                if (currentMonth >= dobMonth)
+
+                    var monthAge = currentMonth - dobMonth;
+                else {
+                    yearAge--;
+                    var monthAge = 12 + currentMonth - dobMonth;
+                }
+
+
+                if (currentDate >= dobDate)
+
+                    var dateAge = currentDate - dobDate;
+                else {
+                    monthAge--;
+                    var dateAge = 31 + currentDate - dobDate;
+
+                    if (monthAge < 0) {
+                        monthAge = 11;
+                        yearAge--;
+                    }
+                }
+
+                age = {
+                    years: yearAge,
+                    months: monthAge,
+                    days: dateAge
+                };
+
+
+                if ((age.years > 0) && (age.months > 0) && (age.days > 0))
+                    ageageString = age.years + " years, " + age.months + " months, and " + age.days + " days";
+                else if ((age.years == 0) && (age.months == 0) && (age.days > 0))
+                    ageageString = age.days + " days";
+
+                else if ((age.years > 0) && (age.months == 0) && (age.days == 0))
+                    ageageString = age.years + " years";
+                else if ((age.years > 0) && (age.months > 0) && (age.days == 0))
+                    ageageString = age.years + " years and " + age.months + " months";
+                else if ((age.years == 0) && (age.months > 0) && (age.days > 0))
+                    ageageString = age.months + " months and " + age.days + " days";
+                else if ((age.years > 0) && (age.months == 0) && (age.days > 0))
+                    ageageString = age.years + " years and " + age.days + " days";
+                else if ((age.years == 0) && (age.months > 0) && (age.days == 0))
+                    ageageString = age.months + " months";
+
+                else ageageString = "1 Days";
+
+
+                return document.getElementById("DOB").innerHTML = ageageString;
+
+            }
+        }
+    </script>
+
+
+    <!--DatePicker-->
+</body>
+</html>
+

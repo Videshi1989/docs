@@ -1,0 +1,82 @@
+
+																REACT
+
+(1)	Differentiate between Real DOM and Virtual DOM.
+(2)	Differentiate between state and props.
+(3)	How is React different from Angular?
+(4)	How is React Router different from conventional routing?
+(5)	What do you know about controlled and uncontrolled components?
+(6)	How is Flux different from Redux?
+(7)	How different is React’s ES6 syntax when compared to ES5?
+(8)	How can you embed two or more components into one?
+(9)	What is React?
+(10)What are the advantages of Redux?
+(11)List down the components of Redux.
+(12)What are the features/Advantage of React? 
+(13)What are the limitations/Drawback of React?
+(14)Why browsers can’t read JSX?
+(15)What were the major problems with MVC framework?
+(16)Why switch keyword is used in React Router v4?
+(17)What is Props(Parmeter)?
+(18)What do you understand by refs in React?
+(19)What is JSX?
+(20)What are synthetic events in React?
+(21)What is a state in React and how is it used?
+(22)What do you understand by Virtual DOM? Explain its works.
+(23)What is the purpose of render() method in React.
+(24)What is the Higher Order Component(HOC)?
+(25)What are Pure Components?
+(26)Explain the role of Reducer.
+(27)What is the significance of Store in Redux?
+(28)What is React Router?
+(29)What is FLUX ?
+(30)What is Redux?
+
+
+
+																HTML
+																
+(1) What is the difference between <div> tag and <span> tag ?
+(2)	What is the difference between <SVG> tag and <CANVAS> tag ?
+(3)	What is the difference between HTML tag and HTML5  ? Removed tags, Added tag and Added input types ?
+(4)	What is web worker  ?
+(5)	How to validate HTML code  ?
+(6)	What is sementic tags  ?
+(7)	Why we use semantic tags?
+(8)	How to check website speed ?
+(9)	How to Increase(Optimize)  website speed ?
+(10)What is <meta> tag ?
+(11)Describe <canvas>,<svg>,<article>,<nav> and <mark> below tags ?
+(12)How to create a table ?
+(13)Write example of Flex Box Property ?
+(14)Write example of calc() function in css to display divs in a single row ?
+(15)How to select <div> by Nth child property ?
+(16)What is HTML ?
+(17)What is HTML list ?
+(18)What is HTML Layout (Web Page) ?
+(19)What is Box Model ?
+(20)What is Flex Box ?
+(21)What are html forms ?
+(22)What is image map ?
+(23)What is <embed> tag ?
+(24)What is marquee tag ?
+(25)How does html and css work together ?
+(26)What is formatting in html ?
+(27)How many types of heading ?
+(28)Which tags we use to create a table ?
+(29)What is the difference between html tags and html elements ?
+(30)How to create nested web pages ?
+(31)What is the new(13) form elements type ?
+(32)Is there any need to change web browser to support html5 ?
+(33)Which type of video formats are supported by HTML5 ?
+(34)Which type of audio formats are supported by HTML5 ?
+(35)What is the difference between <progress> tag and <meter> tag ?	
+(36)What is the use of <figure> tag ?
+(37)What is the use of <figcaption> tag ?
+(38)What is the use of <details> tag and <summary> tag ?
+(39)What is the <datalist> tag ?
+(40)What are the entities in html ?
+(41)What is Lazy Loading ?
+(42)What is Load Balancing in html ?
+(43)How to blur image by using css property ?															
+(44)What is CDN ?

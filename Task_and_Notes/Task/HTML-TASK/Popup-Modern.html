@@ -1,0 +1,63 @@
+
+ html code:
+ 
+ <a  href="#popup1">Show popup</a>
+<div id="popup1" class="overlay">
+  <div class="popup">
+    <h2>Here i am</h2>
+    <a class="close" href="#">×</a>
+    <div>
+      Thanks for pop me out of that button, but now i'm done so you can close this window.
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+css:
+
+
+.overlay {
+  position: fixed;
+  top: -300px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);  
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+  top:0px;
+}
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+  
+}
+.popup .close:hover {
+  color: orange;
+  transform: rotate(90deg);
+}
+

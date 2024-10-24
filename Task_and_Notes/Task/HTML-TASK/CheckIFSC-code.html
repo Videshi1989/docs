@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <input type="text" class="" onchange="getifsc(this.value)" placeholder="Bank IFS Code" id="txtIFSCode" maxlength="11" required />
+
+    <div id="ifscdt"></div>
+
+
+    <script>
+
+        function getifsc(ifsc) {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("GET", "https://ifsc.razorpay.com/" + ifsc, true);
+            xmlhttp.send();
+            ///   
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    var jsontext = xmlhttp.responseText;
+                    var data = JSON.parse(jsontext);
+
+                    $('#ifscdt').html("<div class='alert alert-success border-success'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><i class='icofont icofont-close-line-circled'></i></button><strong>" + data.IFSC + ", " + data.BANK + ", " + data.ADDRESS + "</strong> </div>");
+
+
+                }
+                else {
+                    $('#ifscdt').html("<div class='alert alert-danger border-danger'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><i class='icofont icofont-close-line-circled'></i></button><strong>Invalid ifsc code: " + ifsc + "</strong> </div>");
+
+                }
+            }
+
+        }
+    </script>
+
+</body>
+</html>

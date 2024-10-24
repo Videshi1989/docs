@@ -1,0 +1,78 @@
+this.SendEmailToUser(txtEmailID.Trim(), varificationCode, txtFirstName.ToUpper().Trim());
+
+//////////
+
+    protected void SendEmailToUser(string EmailId, string Code, string SponserName)
+    {
+        objgdb.FillWebSiteEmailCompany(); 
+        string Message =
+
+        //@"<table style='width:100% ; background-color:#eeeeee;'><tr><td><centre><table style='margin:0 auto; width:600px; height:100%; background-color: #fff; font-family:verdana;'><tr><td style='border: 3px solid #1e88e5;border-bottom: none;'><table style='align:center; border:0; cellpadding:0 ;cellspacing:0; width:600px; height:100%; background-color:transparent; margin:0 auto' ;><table Style='align:center; border:0; cellpadding:0 ;cellspacing:0; width:600px; height:100%; background-color:#eeeeee;  margin:0 auto' ;><tbody style='font-family:Helvetica;color:#fff;'><tr><td><table Style='align:center; border:0; cellpadding:0 ;cellspacing:0; width:564px; height:100%; background-color: #eeeeee; margin:0 auto ; font-family:Helvetica;color:#fff; padding:0px' ;><tr><td><img src='http://" + DynamicDtls.WebSite + "/Website_logo/email-logo.png' alt='img' style='height: 45px;'></td><td valign='top' style='padding: 18px 0px; font-size:10px; text-align:left ; color:black;valign:top; margin-right:160px' ;>Welcome to " + DynamicDtls.TopCompName + "</td><td style='display:inline-block; padding-left:5px;padding-top:15px' ;><a href='#'><img src='http://" + DynamicDtls.WebSite + "/UserProfileImg/1.png' alt='img' width='18px' ;></a></td><td style='display:inline-block; padding-left:5px;padding-top:15px' ;><a href='#'><img src='http://" + DynamicDtls.WebSite + "/UserProfileImg/2.png' alt='img' width='18px' ;></a></td><td style='display:inline-block; padding-left:5px;padding-top:15px' ;><a href='#'><img src='http://" + DynamicDtls.WebSite + "/UserProfileImg/4.png' alt='img' width='18px' ;></a></td><td style='display:inline-block; padding-left:5px;padding-top:15px' ;><a href='#'><img src='http://" + DynamicDtls.WebSite + "/UserProfileImg/3.png' alt='img' width='18px' ;></a></td><td style='display:inline-block; padding-left:5px;padding-top:15px' ;><a href='#'><img src='http://" + DynamicDtls.WebSite + "/UserProfileImg/5.png' alt='img' width='18px' ;></a></td></tr></table></td></tr></tbody></table><table style='align:center; border:0; cellpadding:0 ;cellspacing:0; width:600px; height:100%; background-color:transparent; margin:0 auto' ;><tr><td><table style=' width:564px; height:100%; background-color:transparent; margin:0 auto' ;><tr><td style='font-size:12px;color:#4d4e4f' ;><b><span style='color:Green;'>Hi, " + txtFirstName.Trim() + " .</span></b> <br/>   <br>  Keep your account details safe !<hr>	<span style='fort-size:15px;'>Your account details...</span><br>	<table width='500' border='0' align='center' cellpadding='0' cellspacing='4' style='font-size:13px;'>      <tr align='left' valign='middle'>        <td width='186' height='20'><strong>Login-ID :</strong></td>        <td width='304' height='20'>" + txtUserID.Trim() + "</td>      </tr>      <tr align='left' valign='middle'>        <td height='20'><strong>Login-Passowrd :</strong></td>        <td height='20'>" + txtPasswordSU.Trim() + "</td>      </tr> <tr align='left' valign='middle'>        <td height='20'><strong>Txn-Passowrd :</strong></td>        <td height='20'>" + txtsecurityPWD.Trim() + "</td>      </tr>      </table>  <br/><br/>To complete your registration, you just need to confirm your email id by clicking on followling button.</td></tr></table></td></tr></table><table style='align:center; border:0; cellpadding:0 ;cellspacing:0; width:600px; background-color: transparent; margin:0 auto';><tbody><tr><td style='width:190px';></td><td style='padding-bottom:20px';><button style='padding:15px; background-color:#1e88e5;color:#fff; font-weight: 700; text-align: center; border:1px solid #1e88e5; border-radius:3px;font-family: Arial; font-size: 16px;margin:0 auto;width:250px';><span style='color:#fff';><a href='http://" + DynamicDtls.WebSite + "/Verify.html?vrm=" + MemID.Trim() + "' style='text-decoration: none;color:#fff';>Verify Your Email-Adderss </a></span></button></td></tr></tbody></table><table style='align:center; border:0; cellpadding:0 ;cellspacing:0; width:600px; height:100%; background-color:transparent; margin:0 auto';><tr><table style=' width:564px; height:100%; background-color:transparent; margin:0 auto';><tr><td style='font-size:12px;color: #000000ad;padding-bottom:18px';>Note: This link will be functional for 72 hours and can only be used once<br/>Thanks for participating.<br/><br/>Yours Truly<br/>Team " + DynamicDtls.TopCompName + "<br/><br/><br/><b>Important:</b>This is an Auto generated mails, Please do not reply.<br/>Send your query here " + DynamicDtls.Registration + "<br/><br/></td></tr></table></td></tr></table><table border='0' cellpadding='0' cellspacing='0' width='600px' ;><tr><td></td></tr><tbody><tr></tr></tbody></table><table style='background-color:#EEE;border-top: none; border: 3px solid #1e88e5;padding:18px;align:center;  cellpadding:0 ;cellspacing:0; width:608px; margin:0 auto;font-family: Helvetica ;border-top-color: #eeeeee;margin-top: -5px';><tr><td style='text-align: center' ;><img src='http://" + DynamicDtls.WebSite + "/Website_logo/logo-light-icon.png' alt='img' style='width: 50px;height: 50px;margin: 0px;border: 0;outline: none;text-decoration: none' ;></td></tr><tr><td style='text-align:center; color: #0c0202; font-family: Helvetica; font-size: 12px' ;>Copyright &copy; 2019 " + DynamicDtls.TopCompName + ", All rights reserved.<br><br>You can reach us at<br><a href='#' style='text-decoration: none; color:blue' ;>" + DynamicDtls.Registration + "</a></td></tr><tr><td style='font-size:9px' ;><span style='line-height:16.8px' ;><br><span style='text-decoration:underline;font-weight:700';>Note:</span> You have received this mail because you have registered with <a href='#' style='text-decoration: none; color:blue' ;>http://" + DynamicDtls.WebSite + " </a> </span><br style='line-height: 20.8px;'/> <span style='line-height:20.8px;text-decoration:underline;font-weight:700' ;>Legal Disclaimer:&nbsp;</span><span style='line-height: 16.8px;color: #656565;font-weight: normal;text-decoration: none' ;> This Website/ E-mail are vulnerable to data corruption, interception, tampering, viruses as well as delivery errors and we do not accept liability for any consequence that may arise there from.</span></td></tr></table></table></td></tr></table></center></td></tr></table>";
+
+        @"<table style='width:100% ; background-color:#fafafa;'><tr><td><center><table style='margin:0 auto; width:600px; height:100%; background-color: #fff; font-family:verdana;'><tr><td><table style='align:center; border:0; cellpadding:0 ;cellspacing:0; width:600px; height:100%; margin:0 auto' ;><table Style='align:center; border:0; cellpadding:0 ;cellspacing:0; width:600px; height:100%; background-color:#1e88e5; ; margin:0 auto' ;><tbody style='font-family:Helvetica;color:#fff;'><tr><td><table Style='align:center; border:0; cellpadding:0 ;cellspacing:0; width:564px; height:100%; background-color: #1e88e5; margin:0 auto ; font-family:Helvetica;color:#fff; padding:0px' ;><tr><td><img src='http://" + DynamicDtls.WebSite + "/Website_logo/email-logo.png' style=''></td><td valign='top' style='padding: 18px 0px; font-size:10px; text-align:left ; color:#fff;valign:top; margin-right:160px' ;>Welcome to " + DynamicDtls.TopCompName + "</td><td style='display:inline-block; padding-left:5px;padding-top:15px' ;><a href='#'><img src='http://" + DynamicDtls.WebSite + "/UserProfileImg/1.png' width='18px' ;></a></td><td style='display:inline-block; padding-left:5px;padding-top:15px' ;><a href='#'><img src='http://" + DynamicDtls.WebSite + "/UserProfileImg/2.png' width='18px' ;></a></td><td style='display:inline-block; padding-left:5px;padding-top:15px' ;><a href='#'><img src='http://" + DynamicDtls.WebSite + "/UserProfileImg/4.png' width='18px' ;></a></td><td style='display:inline-block; padding-left:5px;padding-top:15px' ;><a href='#'><img src='http://" + DynamicDtls.WebSite + "/UserProfileImg/3.png' width='18px' ;></a></td><td style='display:inline-block; padding-left:5px;padding-top:15px' ;><a href='#'><img src='http://" + DynamicDtls.WebSite + "/UserProfileImg/5.png' width='18px' ;></a></td></tr></table></td></tr></tbody></table><table style='align:center; border:0; cellpadding:0 ;cellspacing:0; width:600px; height:100%; background-color:transparent; margin:0 auto' ;><tr><td><table style=' width:564px; height:100%; background-color:transparent; margin:0 auto' ;><tr><td style='font-size:12px;color:#4d4e4f' ;><table style='align:center; border:0; cellpadding:0 ;cellspacing:0; width:600px; height:100%; background-color:transparent; margin:0 auto' ;> <tr> <td> <table style=' width:564px; height:100%; background-color:transparent; margin:0 auto' ;> <tr> <td style='font-size:12px;color:#4d4e4f' ;> <b><span style='color:Green;'>Hi, " + txtFirstName.Trim() + " .</span></b> <br/> <br>Keep your account details safe ! <hr> <span style='fort-size:15px;'>Your account details...</span><br><table width='500' border='0' align='center' cellpadding='0' cellspacing='4' style='font-size:13px;'> <tr align='left' valign='middle'> <td width='186' height='20'><strong>Login-ID :</strong></td><td width='304' height='20'>" + txtUserID.Trim() + "</td></tr><tr align='left' valign='middle'> <td height='20'><strong>Login-Passowrd :</strong></td><td height='20'>" + txtPasswordSU.Trim() + "</td></tr><tr align='left' valign='middle'> <td height='20'><strong>Txn-Passowrd :</strong></td><td height='20'>" + txtsecurityPWD.Trim() + "</td></tr></table> <br/><br/>To complete your registration, you just need to confirm your email id by clicking on followling button. </td></tr></table> </td></tr></table> <table style='align:center; border:0; cellpadding:0 ;cellspacing:0; width:600px; background-color: transparent; margin:0 auto';> <tbody> <tr> <td style='width:190px';></td><td style='padding-bottom:20px';><button style='padding:15px; background-color:#1e88e5;color:#fff; font-weight: 700; text-align: center; border:1px solid #1e88e5; border-radius:3px;font-family: Arial; font-size: 16px;margin:0 auto;width:250px';><span style='color:#fff';><a href='http://" + DynamicDtls.WebSite + "/Verify.html?vrm=" + varificationCode.Trim() + "' style='text-decoration: none;color:#fff';>Verify Your Email-Adderss </a></span></button></td></tr></tbody> </table><br/><br/>Yours Truly<br/>Team " + DynamicDtls.TopCompName + "<br/><br/><br/><b>Important:</b>This is an Auto generated mails, Please do not reply.<br/>Send your query here " + DynamicDtls.Registration + "<br/><br/></td></tr></table></td></tr></table><table border='0' cellpadding='0' cellspacing='0' width='600px' ;><tr><td style='border-bottom:2px solid #eaeaea; padding:13px' ;></td></tr></table><table border='0' cellpadding='0' cellspacing='0' width='600px' text-align='left'><tbody><tr></tr></tbody></table><table style='background-color:#EEE; padding:18px;align:center; border:0; cellpadding:0 ;cellspacing:0; width:600px; margin:0 auto;font-family: Helvetica' ;><tr><td style='text-align: center' ;><img src='http://" + DynamicDtls.WebSite + "/Website_logo/logo-light-icon.png' style='margin: 0px;border: 0;outline: none;text-decoration: none' ;></td></tr><tr><td style='text-align:center; color: #0c0202; font-family: Helvetica; font-size: 12px' ;>Copyright &copy; 2019 " + DynamicDtls.TopCompName + ", All rights reserved.<br><br>You can reach us at<br><a href='#' style='text-decoration: none; color:blue' ;>" + DynamicDtls.Registration + "</a></td></tr><tr><td style='font-size:9px' ;><span style='line-height:16.8px' ;><br><span style='text-decoration:underline;font-weight:700';>Note:</span> You have received this mail because you have registered with <a href='"+ DynamicDtls.WebSite +"/' style='text-decoration: none; color:blue' ;>http://" + DynamicDtls.WebSite + " </a> </span><br style='line-height: 20.8px;'/> <span style='line-height:20.8px;text-decoration:underline;font-weight:700' ;> Legal Disclaimer:&nbsp;</span><span style='line-height: 16.8px;color: #656565;font-weight: normal;text-decoration: none' ;> This Website/ E-mail are vulnerable to data corruption, interception, tampering, viruses as well as delivery errors and we do not accept liability for any consequence that may arise there from.</span></td></tr></table></table></td></tr></table></center></td></tr></table>";
+        
+        try
+        {
+            SmtpClient SmtpClient = new SmtpClient();
+            MailMessage msg = new MailMessage(DynamicDtls.Email, EmailId, "Your " + DynamicDtls.TopCompName + " account, " + txtFirstName.ToString() + " details.", Message);
+            msg.From = new MailAddress(DynamicDtls.Email, DynamicDtls.TopCompName);
+            SmtpClient.Host = DynamicDtls.EMailPort;
+            System.Net.NetworkCredential cr = new System.Net.NetworkCredential(DynamicDtls.Email, DynamicDtls.EMailPWD);
+            SmtpClient.Port = 25;
+            SmtpClient.Credentials = cr;
+            msg.IsBodyHtml = true;
+            SmtpClient.Send(msg);
+
+
+        }
+        catch (Exception ex)
+        {
+            DB.WriteLog(this.ToString() + " Error Msg :" + ex.Message + "\n" + "Event Info :" + ex.StackTrace);
+            sc = false;
+            msg = "<span style='color:#FB4700; font-wight:bold; font-size:13px;'>Oops, Somthing is wrong, Please try later !</span><br/>";
+        }
+        finally
+        {
+            if (ds != null) { ds.Dispose(); }
+        }
+    }
+	
+	////////////// cs file code:(Like:  dynamcdtls.cs)
+	
+	
+	    public void FillWebSiteEmailCompany()
+    {
+        try
+        {
+            ds = new DynamicDtls().ByCompProcedure("[Comp_ProFillDetails]", "BY DATASET");
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                CompName = ds.Tables[0].Rows[0]["CompName"].ToString();
+                CompEmail = ds.Tables[0].Rows[0]["CompEmail"].ToString();
+                CompWeb = ds.Tables[0].Rows[0]["CompWeb"].ToString();
+                WebSite = ds.Tables[0].Rows[0]["WebSite"].ToString();
+                WebSite2 = ds.Tables[0].Rows[0]["WebSite2"].ToString();
+                TopCompName = ds.Tables[0].Rows[0]["TopCompName"].ToString();
+                Email = ds.Tables[0].Rows[0]["Email"].ToString();
+                Registration = ds.Tables[0].Rows[0]["RegisEmail"].ToString();
+                currency_type = ds.Tables[0].Rows[0]["currency_type"].ToString();
+                BusiLinkForJoin = ds.Tables[0].Rows[0]["BusLinkForJoin"].ToString();
+                EMailPort = ds.Tables[0].Rows[0]["EMailAddPort"].ToString();
+                EMailPWD = ds.Tables[0].Rows[0]["EMailAddPWD"].ToString();
+                SysCurncy = ds.Tables[0].Rows[0]["SysCurncy"].ToString();
+                CompanyAddress = ds.Tables[0].Rows[0]["CompAddress"].ToString();
+            }
+        }
+        catch (Exception ex)
+        {
+            DB.WriteLog(" Error Msg :" + ex.Message + "\n" + "Event Info :" + ex.StackTrace);
+        }
+    }
+	
+	/////////////
+
+ NOTE:
+    (1) Check Email(Like:  support@aimlife.biz),MailHost(Like:  mail.aimlife.biz),MailPWD,RegisEmail(Like: support@aimlife.biz) (code colom) of Inst_ApplicationSetting Table.
+			  
+			  
+			  

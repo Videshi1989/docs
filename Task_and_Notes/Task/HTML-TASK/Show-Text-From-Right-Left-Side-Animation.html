@@ -1,0 +1,51 @@
+<html>
+<head>
+	<style>
+	::-webkit-scrollbar {
+    display: none;
+}
+	h1,
+h2 {
+  width: 100%;
+}
+
+h1 {
+  animation: right_to_left 3s ease;
+  
+}
+
+h2 {
+  text-align: right;
+  animation: left_to_right 3s ease;
+  
+}
+
+@keyframes right_to_left {
+  from {
+    margin-left: 100%;
+  }
+  to {
+    margin-left: 0;
+  }
+}
+
+@keyframes left_to_right {
+  from {
+    margin-left: -100%;
+  }
+  to {
+    margin-left: 0;
+  }
+}
+	
+	</style>
+</head>
+
+<body>
+<h1>I come from the right side</h1>
+<h2 >I come from the left side</h2>
+
+
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+    https://www.youtube.com/watch?v=R9lx-XJb8iM
+	
+	https://www.youtube.com/watch?v=GMaQPv5ZsR0      //youtube link
+	
+	// firstly showed easy method than show complecated maethod this is complecated method.
+	
+	
+	
+	App.js
+	
+	import React from 'react'
+	import Modal from './components/Modal'
+	
+	const App = () => {
+		return <Modal />
+	};
+	export default App
+	
+	
+	
+	
+	
+	
+	
+	
+	Modal.js
+	
+	import React,{useState} from 'react'
+	import MyModal from './ShowModal'
+	
+	const Modal = () =>{
+	    const [showModal,setShowModal]=useState(false);
+		const closeModal = () =>{
+			return setShowModal(false)
+		}
+		
+		return(
+			<>
+				<button onClick={()=>setShowModal(true)}>Open Modal</button>
+				{ showModal && <MyModal closeModal={closeModal} /> }
+			</>
+		)
+	};
+	export default Modal
+	
+	
+	
+	
+	
+	ShowModal.js
+	
+	import {useEffect} from 'react'	
+	
+	const MyModal = ({closeModal}) =>{           //to hidden and show scroll bar
+	useEffect(()=>{
+	document.body.style.overflowY="hidden";
+	return()=>{
+	document.body.style.overflowY="scroll";
+	};		
+	},[]);
+	
+	const MyModal = ({closeModal}) => {
+			return(
+				<>
+				    <div className="modal-wrapper"  onClick={closeModal} ></div>   //to close outside
+					<div className="modal-container">
+					<h2>Stay tuned</h2>
+					<p>This is modal content</p>
+					<button onClick={closeModal}>Accept it</button>
+					</div>
+				</>
+			)
+		};
+	export default MyModal	
+	
+	
+	
+	
+	
+	
+	index.css
+	
+	*{
+		margin:0;padding:0;box-sizing:border-box;
+	}
+	.container{
+		margin:5rem;
+	}
+	.modal-wrapper{
+		position:fixed;left:0;right:0;top:0;bottom:0;background-color:rgba(189,189,189.0.9);
+	}
+	.modal-container{
+		position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background-color:#ffffff;padding:20px;border-radius:5px;
+	}

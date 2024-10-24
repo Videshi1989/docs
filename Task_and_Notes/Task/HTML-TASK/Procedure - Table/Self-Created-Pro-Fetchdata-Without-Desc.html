@@ -1,0 +1,53 @@
+
+/* Procedure for fetching data without description */
+
+
+
+CREATE PROCEDURE [dbo].[FrRepur_DeliveryCentre]                              
+ --  FrRepur_DeliveryCentre 'MADHYA PRADESH' ,'','' ,'STATE','','',''  
+ --  FrRepur_DeliveryCentre 'MADHYA PRADESH' ,'Indore','' ,'CITY','','',''  
+ --  FrRepur_DeliveryCentre 'MADHYA PRADESH' ,'Indore','Indore District' ,'DISTRICT','','',''
+ --  FrRepur_DeliveryCentre '' ,'','' ,'ALL','','',''                               
+ (
+  @State VARCHAR(50), 
+  @City VARCHAR(100),
+  @District VARCHAR(100),
+  @Type VARCHAR(100),
+  @intPageSize BIGINT,
+  @intCurrentPage BIGINT,
+  @intTotalRecords BIGINT OUTPUT
+  )                              
+AS                              
+BEGIN 
+DECLARE @start BIGINT=0
+SET @start=0                                                                                                                                                                                                  
+SET @start=@intPageSize*(@intCurrentPage - 1) 
+-----   select * from FrRepur_tblDistributorMaster
+
+  IF @Type = 'STATE'
+  BEGIN
+     SELECT * FROM FrRepur_tblDistributorMaster WHERE State=@State
+  END
+
+  ELSE IF @Type = 'CITY'
+  BEGIN
+     SELECT * FROM FrRepur_tblDistributorMaster WHERE State=@State and City=@City
+  END
+
+  ELSE IF @Type = 'DISTRICT'
+  BEGIN
+     SELECT * FROM FrRepur_tblDistributorMaster WHERE State=@State and City=@City and DISTRICT=@District
+  END
+
+  ELSE IF @Type = 'ALL'
+  BEGIN
+  
+     SELECT DISTINCT state FROM FrRepur_tblDistributorMaster WHERE LoginId <> 'AL(24$)FRADM'
+  END
+
+ 
+	SET @intTotalRecords=0
+	SET @intTotalRecords=1000
+	SET ROWCOUNT @intPageSize 
+	
+END 

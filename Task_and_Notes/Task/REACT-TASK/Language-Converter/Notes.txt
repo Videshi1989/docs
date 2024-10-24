@@ -1,0 +1,71 @@
+https://www.youtube.com/watch?v=0vQkTya1Qb4    // youtube link
+https://www.npmjs.com/package/axios    //reference link
+https://libretranslate.de/docs/#/translate/post_detect     //reference link
+
+https://codesandbox.io/s/google-translate-in-react-js-qzdjj?file=/src/styles.css          //working with error
+ 
+ 
+ 
+ HTML CODE:
+ 
+ <div>
+		from({from}) <select onChange={e=>setFrom(e.target.value)}>
+					{options.map(opt=><option key={opt.code} value={opt.code}>{opt.name}</option>)}
+		     </select>
+			 
+			 to({to}) <select onChange={e=>setTo(e.target.value)}>
+					{options.map(opt=><option key={opt.code} value={opt.code}>{opt.name}</option>)}
+		     </select>
+ </div>
+ <div>
+	<textarea cols="50" rows="8" onInput={(e)=>setInput(e.target.value)}> </textarea>
+ </div>
+  <div>
+	<textarea cols="50" rows="8" value={output}> </textarea>
+ </div>
+  <div>
+	<button onClick={e=>translate()}>Translate</button>
+ </div>
+ 
+ -------------------------
+ 
+ JS CODE:
+ 
+ (1) run below command inside folder location:
+    {CoderDost} translate-app % yarn add axios     // i think this is not required
+	
+ (2)
+     use below code
+     import {useState} from 'react';
+     const axios = require('axios').default;       // i think this is not required
+     
+	 paste below code after starting function:
+	 
+	 const[options,setOptions] = useState([]);
+	 const[to,setTo] = useState("en");
+	 const[from,setFrom] = useState("en");
+	 const[input,setInput] = useState("");
+	 const[output,setOutput] = useState("");
+	 const translate=()=>{
+		
+		const params = new URLSearchParams();
+		params.append('q',input);
+		params.append('source',from);
+		params.append('target',to);
+		params.append('api_key','xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx');
+		axios.post('https://libretranslate.de/translate',params,{headers:{'accept':'application/json','Content-Type':'application/x-WWW-form-urlencoded'}}).then(res=>{
+			console.log(res.data)
+			setOutput(res.data.translatedText)
+			})
+	 }
+	 useEffect(()=>{
+		axios.get('https://libretranslate.de/languages',{headers:{'accept':'application/json'}}).then(res=>{
+			console.log(res.data);
+			setOptions(res.data);
+		})
+	 },[])
+	 
+
+	
+ 
+ 

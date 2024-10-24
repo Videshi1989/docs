@@ -1,0 +1,54 @@
+/* Core data types   or core types:
+
+	Number : 10 , 30 ,3.5
+	String : "welcome"
+	Boolean: true   or   false
+	
+*/
+
+
+/* Type inference:
+
+	jab ham first time variable me value assign karte time uska type mention nahi karte hai to wo 
+	variable apne aap hi 	judge kar leta hai ki kis type ki value assign hui hai, aage bhi usi 
+	type ki value hi assign hoga. ise hi type inference kahte hai.
+
+	agar ham value assign nahi karte hai to bydefault iski type any rahti hai. usme ham kisi bhi
+	type ki value assign aur change kar sakte hai.
+
+	ham kisi specific number ko bhi type bana sakte hai.
+	let data:5; or let data:5=5;
+	data=5;
+	
+*/
+
+/*   Object types   */
+
+const obj:{name:string,age:number,email:string} = {
+	name:'welcome',
+	age:17,
+	email:'test2gmail.com'
+}
+
+
+/* OR we can declare type for multiple use */
+
+type objtype2={name2:string,age2:number,email2:string}
+
+const obj2:objtype2 = {
+	name2:'welcome',
+	age2:17,
+	email2:'test2gmail.com'
+}
+
+const obj3:objtype2 = {
+	name2:'welcome',
+	age2:17,
+	email2:'test2gmail.com'
+}
+
+
+
+
+
+	

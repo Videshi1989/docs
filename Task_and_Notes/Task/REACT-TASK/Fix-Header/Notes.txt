@@ -1,0 +1,76 @@
+https://www.freakyjolly.com/react-js-sticky-fixed-header-using-on-scroll-event-handler/      // reference link
+
+
+(1) import below code:
+	import React, { useState, useEffect } from "react";
+	
+(2)	Paste below code inside main function of component (top of return() function):
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const handleScroll = () => {
+    const position = window.pageYOffset;
+    setScrollPosition(position);
+    };
+
+    useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+    }, []);
+	
+(3) attach below code on header tag:
+	className={`header ${scrollPosition > 50 ? "fixed slide-in" : ""}`}	
+	
+	Note: We can use, fixed or fixed fade-in or fixed slide-in class instead of fixed slide-in class.
+	
+(4) use below css code:
+	.header {
+    width: 100%;
+    z-index: 999;
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    
+    transition: all 0.3s ease;
+  }
+  
+  .header.fixed {
+    position: fixed;
+    background-color: white;
+    height: 60px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logo {
+    max-width: 200px;
+    max-height: 60px;
+    transition: all 0.3s ease;
+  }
+  
+  .header.fade-in {
+    animation: fadeIn 0.5s ease-in;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .header.slide-in {
+    animation: slideIn 0.5s ease-in;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  

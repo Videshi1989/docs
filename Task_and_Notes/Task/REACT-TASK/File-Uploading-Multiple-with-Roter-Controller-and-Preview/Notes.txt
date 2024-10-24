@@ -1,0 +1,173 @@
+This service is working only within server side.
+
+
+Step(1):Install multer in server side by using below command:
+		npm install multer
+		 
+Step(2):Set Router by using below code:
+		router.route('/multipleproductimage').post(adminController.uploadMultipleImage);
+
+Step(3):Create a file uploadMultiple.js inside middleware folder and paste below code inside uploadMultiple.js file:
+		const multer = require('multer');
+const path = require('path');
+
+const checkFileType=  (file, cb)=> {
+    const filetypes = /jpeg|jpg|png|svg|gif/;
+    const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+    const mimetype = filetypes.test(file.mimetype);
+    
+    if(mimetype && extname) 
+    {
+        cb(null, true);
+    } 
+    else 
+    {
+        cb(null, false);
+    }
+}
+
+
+// Set storage engine
+const storage = multer.diskStorage({
+    destination: './uploads/',
+    filename: (req, file, cb) => {
+        //cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+        cb(null, Date.now() + "-" + file.originalname)
+    },
+});
+
+// Init upload
+const uploadMultiple = multer({
+    storage: storage,
+    limits: { fileSize: 500000 }, // Limit to 512kb per file
+    fileFilter: (req, file, cb) => { checkFileType(file, cb); },
+}).array('images', 10);    //upload max 10 files each time
+
+
+module.exports = uploadMultiple;
+
+
+Step(4): create a folder 'uploads' with in server on root location.
+		 
+Step(5):Use below code inside controller:
+	const uploadMultipe = require("../middlewares/uploadMultiple")
+	
+const uploadMultipleImage = async (req, res) => {
+
+    uploadMultipe(req, res, (err) => {
+            if(err) 
+            {
+                res.status(400).json({ imagestatus: 'selected', imagesize:err.code, imagelength:'' });
+            }
+            else 
+            {
+                if (req.files.length === 0) 
+                { 
+                    res.status(400).json({ imagestatus: 'notselected', imagesize:'', imagelength:0 });
+                } 
+                else 
+                {
+                    res.status(200).json({ files: req.files.map(file => file), imagestatus: 'selected', imagesize:req.files.size, imagelength: req.files.length});
+                }
+            }
+    
+    });
+};
+	
+	module.exports = uploadMultipleImage;
+	
+Step(4):Use below code in front-end side(Imageupload.js):
+		import React,{useState} from 'react'
+
+		const Imageupload = ()=>{
+
+		const [images, setImages] = useState([]);
+		const [preview, setPreview] = useState([]);
+
+			const ReadMultiImages = (e)=>{
+	const files = Array.from(e);
+    const validImages = [];
+    //const errorMessages = [];
+
+    files.forEach((file) => {
+     
+      /*if (!file.type.startsWith('image/')) {
+        errorMessages.push(`${file.name} is not a valid image file.`);
+        return;
+      } */
+
+     
+      /*if (file.size > 2 * 1024 * 1024) {
+        errorMessages.push(`${file.name} exceeds the 2MB size limit.`);
+        return;
+      }*/
+
+      validImages.push(file);
+      
+    });
+
+    setImages((prevImages) => [...prevImages, ...validImages]);   //to send images data in backend
+}
+   
+	const DeletePreviewImages = (indexToRemove) => {
+		setImages((prevImages) => prevImages.filter((_, index) => index !== indexToRemove));
+		//to send images data in backend
+	  };
+		
+		const handleSubmit = async(e)=>{
+
+		e.preventDefault();
+		const formdata = new FormData();
+    	const formdata = new FormData();
+        images.forEach((image) => {
+            formdata.append('images', image);
+			
+        });
+
+		//console.log("original length: ",images.length)
+		const imgresponse = await fetch(`${ADMINAPI}/multipleproductimage`,
+			{
+			  method:"POST",
+			  'Content-Type': 'multipart/form-data',
+			  body:formdata
+			});
+			const imgfeedback = await imgresponse.json();
+            console.log('Images uploaded successfully:', imgfeedback);
+			//const subchildcategorywithimgstatus = {...subchildcategory,...imgfeedback}
+			console.log('new data :', subchildcategorywithimgstatus);
+		
+			
+		
+		
+		};
+  
+		return (
+		<div className="App">
+		<form onSubmit={handleSubmit} encType='multipart/form-data'>
+		<h2>File upload</h2>
+		<br/>
+			<input name="subchildcategoryimg" id="subchildcategoryimg" onChange={ (e)=>{  ReadMultiImages([...e.target.files]); }} type="file" accept="image/png,image/jpg,image/jpeg,image/svg+xml,image/gif" multiple="multiple" className="admin-control"  />
+		    	<div style={{ display: 'flex', flexWrap: 'wrap', marginTop:'10px' }}>
+				<span className='imginst'>upload only png,jpg,jpeg,svg and gif file.</span>
+				{
+					multiimagedata.length > 0 ? 
+						multiimagedata.map((data,index) =>
+						<div style={{position: 'relative'}}>
+							<img src={`${process.env.REACT_APP_BACK_END_URL}/uploads/${data.imagename}`} style={{width:'100px',height:'100px',marginRight:'5px',marginBottom:'5px'}} />
+						<button type="button" onClick={() => DeleteMultiImage(data._id)} title='Remove' style={{ position: 'absolute',top: 0,right: 0,backgroundColor: 'red',color: 'white',border: 'none',borderRadius: '50%',cursor: 'pointer' }}>
+                  						&times;
+                					</button>
+						</div>
+  										
+						) : <img src={`${process.env.REACT_APP_BACK_END_URL}/uploads/noimg.svg`} style={{width:'100px'}} />
+				}
+				</div>
+		<br/><br/>
+		<button type="submit" >Upload</button>
+		</form>
+		</div>
+		);
+	}
+
+	export default Imageupload
+		

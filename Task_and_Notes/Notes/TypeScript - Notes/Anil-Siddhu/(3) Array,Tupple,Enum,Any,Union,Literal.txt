@@ -1,0 +1,60 @@
+
+/*  Array type */
+
+let arr:string[] = ["bhopal","mumbai","Vadodara"];             //for same type value
+let arr3:[string,number,boolean] = ["bhopal",123,true];		   //for different type value (limited array)
+let arr4:any[] = ["bhopal",123,true];	            // for different and unlimited value
+
+let arr5:[string,number,boolean?] = ["bhopal",123];	//will store one boolean value
+arr5.push(true);     //it will store one boolean value;
+arr5[0]="Indore";    // it will replace value of 0th index
+
+
+
+
+
+/*  Tupple type
+	it is same as array with some advance featers like type any.
+
+*/
+
+
+/*  Enum type
+	it is a group of constant.
+*/
+enum Role {
+	Admin,Manager,user
+}
+console.log(Role);
+console.log(Role.Manager);
+
+
+/*  any type */
+let data:any=10;
+data="welcome";   //we can store any type value
+data=true;        //we can store any type value
+
+
+/*  Union type */
+
+let udata:string | number = "welcome";    //we can store string value or number value
+function Checkunion(a:string | number,b:string | number)
+{
+	if(typeof a==='number' && typeof b==='number') { return a+b ;}
+	else{ return a.toString() + b.toString();}
+}
+console.warn(Checkunion(10,20))
+
+
+
+
+/*  Literal type */
+
+let type: "as-number" | "as-string" = "as-number";    // it's value will be "as-number" or "as-string"
+
+function CheckLiteral(a:string | number,b:string | number, type: "as-number" | "as-string")
+{
+	if(type ==='as-number' ) { return (+a)+(+b) ;}
+	else{ return a.toString() + b.toString();}
+}
+console.warn(CheckLiteral(10,20,"as-number"))

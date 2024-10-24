@@ -1,0 +1,97 @@
+/* History Procedure without description for datatable */
+
+
+
+
+
+CREATE PROCEDURE [dbo].Order_Status_SearchHistry                                                           
+ --Order_Status_SearchHistry 'AL76354566','ALL','','','','1','25',''                                                  
+ (                                                            
+ @MemID varchar(15),
+ @SrchByDjGt varchar(15),                                
+ @strSearchText varchar(100),
+ @FrmDt varchar(15),                    
+ @ToDt varchar(15),
+ @intCurrentPage int,                    
+ @intPageSize int,                                
+ @intTotalRecords bigint output                                                            
+ )                                                            
+AS                                                            
+BEGIN                                                            
+ -----------    select * from [Rchrg_tblRechargeCodeDtls]   
+ -- select * from Rchrg_tblRechargeCodeDtls   
+ SET NOCOUNT ON;                                                  
+ -----------   select * from tblRecharge_History                                                    
+DECLARE @tblStudentDtl TABLE(                                                            
+ID bigint identity(1,1),MemID VARCHAR(15),PackageName VARCHAR(50),Qnty VARCHAR(50),PackageAmt VARCHAR(50),                                
+ORDERNo VARCHAR(50),OrderDate datetime,OrderStatus VARCHAR(50),PaymentMode VARCHAR(50),PaymentSts VARCHAR(50),SGST VARCHAR(50) ,      
+CGST varchar(50),
+IGST varchar(50),TotalAmt varchar(50),ShipContactName varchar(50),ShipAdd varchar(50),ShipCity varchar(50),ShipState varchar(50),ShipPin varchar(50),ShipContact varchar(50),TranrtMode varchar(50),TranrtNo varchar(50),TranrtDate varchar(50),TranrtSts varchar(50),DeliverToPerName varchar(50),DeliverOn varchar(50),InvoiceNo varchar(50),InvoiceDt varchar(50)                                              
+)                                 
+DECLARE @start bigint,@SFrmDt datetime,@STodt datetime,@SqlQuery varchar(1500) ,@SqlSubQuery  varchar(2000)                                                      
+set @start=0                                                            
+SET @start=@intPageSize*(@intCurrentPage - 1)                                                            
+IF @FrmDt='' and @Todt=''                                                          
+BEGIN                                
+set @SFrmDt='01/01/2011'                                                          
+set @STodt=convert(DATETIME,DBO.getdateIND())                                                          
+END                                                     
+ELSE                                                          
+BEGIN                                                          
+set @SFrmDt=convert(datetime,@FrmDt,103)                                                          
+set @STodt=convert(datetime,@ToDt,103)        -- select * from tblA_Wallet                                               
+END 
+SET @SqlQuery=                                
+--'SELECT ID, (SELECT t.ServiceOperators FROM [Rchrg_tblRechargeCodeDtls] t WITH (NOLOCK) WHERE t.ServiceCode=RecType) RecType,RecComp,RecCircle,RecNo,RecAmt,RecDT,RecStatus,TransactionID,Message,RecPV,RequestNo FROM tblRecharge_History With(NOLOCK) WHERE MemID'   
+'SELECT MemID,PackageName,Qnty,PackageAmt,                                
+ORDERNo,OrderDate,OrderStatus,PaymentMode,PaymentSts,SGST,      
+CGST,IGST,TotalAmt,ShipContactName,ShipAdd,ShipCity,ShipState,ShipPin,ShipContact,TranrtMode,TranrtNo,TranrtDate,TranrtSts,DeliverToPerName,DeliverOn,InvoiceNo,InvoiceDt FROM tblPackageOders With(NOLOCK) WHERE MemID'   
+---
+---                                          
+IF @SrchByDjGt='All'                                                          
+ BEGIN                                
+  SET @SqlSubQuery= @SqlQuery +'='''+ @MemID + ''' AND CONVERT(DATE,OrderDate)'+' between ''' + rtrim(@SFrmDt) + ''' and '''+ rtrim(@STodt)+''' ORDER BY ID desc'                                
+ END                                                          
+ELSE                                                         
+ BEGIN                                               
+  SET @SqlSubQuery= @SqlQuery +'='''+ @MemID + ''' AND CONVERT(DATE,OrderDate) '+' between ''' + rtrim(@SFrmDt) + ''' AND '''+ rtrim(@STodt)+'''' +' AND '+ RTRIM(@SrchByDjGt)+''+'='''+  RTRIM(@strSearchText) +''' ORDER BY ID desc'                              
+ END
+ -- select * from tblA_Wallet
+ --SELECT TransDt,IncType,Investid,batchno FROM tblA_Wallet With(NOLOCK) WHERE MemID=@MemID
+ ----                     
+INSERT INTO @tblStudentDtl (MemID,PackageName,Qnty,PackageAmt,                                
+ORDERNo,OrderDate,OrderStatus,PaymentMode,PaymentSts,SGST,      
+CGST,IGST,TotalAmt,ShipContactName,ShipAdd,ShipCity,ShipState,ShipPin,ShipContact,TranrtMode,TranrtNo,TranrtDate,TranrtSts,DeliverToPerName,DeliverOn,InvoiceNo,InvoiceDt) 
+EXECUTE  (@SqlSubQuery) 
+print  @SqlSubQuery
+----           
+SET @intTotalRecords=0                   
+SELECT @intTotalRecords =COUNT(ID) FROM @tblStudentDtl  WHERE ID > @start                            
+-----
+--select * from @tblStudentDtl
+SET ROWCOUNT @intPageSize 
+SELECT ID,PackageName,PackageAmt,Qnty,TotalAmt,                                
+ORDERNo,OrderDate,OrderStatus,PaymentMode,PaymentSts,SGST,      
+CGST,IGST,ShipContactName,ShipAdd,ShipCity,ShipState,ShipPin,ShipContact,TranrtMode,TranrtNo,TranrtDate,TranrtSts,DeliverToPerName,DeliverOn,InvoiceNo,InvoiceDt
+--CASE WHEN RecComp='UsingCpnsYes' THEN CONVERT(VARCHAR,RecAmt) +'{Redeem Coupon}' ELSE RecAmt END 
+--Amount,TranID as [Tran. ID],
+--CASE WHEN RecStatus='Pending' THEN '<b style=''Color:#03a9f4;''>'+ UPPER(RecStatus)+'</b>'
+--WHEN RecStatus='Success' THEN '<b style=''Color:#4caf50;''>'+ UPPER(RecStatus)+'</b>'
+--WHEN RecStatus='Failed' THEN '<b style=''Color:#ff5722;''>'+ UPPER(RecStatus)+'</b>'
+--ELSE RecStatus END [Status]                 
+--,isnull(RecPV,0)  RecPV                           
+FROM @tblStudentDtl WHERE  ID > @start
+---    @                            
+SET ROWCOUNT 0                                  
+---
+END 
+--SELECT SrNo,RequestNo [Trn No] ,convert(varchar(20),RecDT,100) [Trn Date], 
+--'<b>'+RecType+'</b>' [Service Name],RecNo [Customer No],
+--CASE WHEN RecComp='UsingCpnsYes' THEN CONVERT(VARCHAR,RecAmt) +' <b style=''Color:RED;''>{Redeem Coupon}</b>' ELSE RecAmt END 
+--Amount,TranID as [Tran. ID],
+--CASE WHEN RecStatus='Pending' THEN '<b style=''Color:#03a9f4;''>'+UPPER(RecStatus)+'</b>'
+--WHEN RecStatus='Success' THEN '<b style=''Color:#4caf50;''>'+UPPER(RecStatus)+'</b>'
+--WHEN RecStatus='Failed' THEN '<b style=''Color:#ff5722;''>'+UPPER(RecStatus)+'</b>'
+--ELSE RecStatus END [Status]                 
+----,isnull(RecPV,0)  RecPV                           
+--FROM @tblStudentDtl WHERE SrNo > @start

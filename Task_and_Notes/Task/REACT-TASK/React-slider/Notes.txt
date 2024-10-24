@@ -1,0 +1,207 @@
+
+
+https://www.youtube.com/watch?v=adNMCxDOd_A      //automatic slider with multi choice [Not working]
+
+https://www.youtube.com/watch?v=vJcd7rR9_rk     // working
+https://www.youtube.com/watch?v=6O0Eb3drgpc     // 3D effect sliding show
+
+https://swiperjs.com/get-started        // to get code
+
+
+
+/////////////////////////////// Simple Autoplay slider [Working]
+
+(1)install swiper inside folder by below command:
+	npm i swiper
+	
+(2)create a component and paste below code:
+
+	import React from 'react'
+	import {Swiper,SwiperSlide} from 'swiper/react'
+	import { Navigation, Pagination, Scrollbar, A11y,Autoplay } from 'swiper';
+	import 'swiper/swiper-bundle.min.css'
+	//import 'swiper/css'
+	//import 'swiper/css/navigation';
+	//import 'swiper/css/pagination';
+	//import 'swiper/css/scrollbar';
+	import 'swiper/css/autoplay';
+
+	export default function Sliding()
+	{
+    return(
+        <>
+        
+        <Swiper   modules={[Navigation, Pagination, Scrollbar, A11y,Autoplay]}
+      spaceBetween={50}
+      slidesPerView={1}
+      navigation
+      autoplay={true}
+      pagination={{ clickable: true }}
+      scrollbar={{ draggable: true }}  >
+
+            <SwiperSlide><img src="https://soliloquywp.com/wp-content/uploads/2018/11/nb_ist_cover.jpg" style={{width:"100%",height:"500px"}}/></SwiperSlide>
+            <SwiperSlide><img src="https://jssors8.azureedge.net/demos/image-slider/img/px-beach-daylight-fun-1430675-image.jpg" style={{width:"100%",height:"500px"}}/></SwiperSlide>
+            <SwiperSlide><img src="https://jssors8.azureedge.net/demos/image-slider/img/faded-monaco-scenery-evening-dark-picjumbo-com-image.jpg" style={{width:"100%",height:"500px"}}/></SwiperSlide>
+            <SwiperSlide><img src="https://i.ytimg.com/vi/xZJcJ6QRvfY/maxresdefault.jpg" style={{width:"100%",height:"500px"}}/></SwiperSlide>
+
+        </Swiper>
+
+        </>
+    )
+	}
+	
+(3) import this component inside App.js file.	
+
+
+
+
+
+
+
+/////////////////////////////// 3D Effect slider [working]
+
+(1) Type "swiper": "*" in package.json file and run below command
+	npm install          // it will install all files of swiper slider
+	
+(2) Crate component and import below files:
+	import {Swiper,SwiperSlide} from "swiper/react";	
+	import "swiper/swiper.min.css";
+	import "swiper/components/effect-coverflow/effect-coverflow.min.css";
+	import "swiper/components/pagination/pagination.min.css";
+	import "swiper/components/navigation/navigation.min.css";
+	import "./styles.css";
+	import SwiperCore,{EffectCoverflow,Pagination,Navigtion} from "swiper/core";
+	
+	SwiperCore.use([EffectCoverflow,Pagination,Navigtion])
+	
+(3) Use below html code:
+
+	<div className="container">
+		<div className="title_wrapper">
+			<div className="reactLogo">
+				<img src="https://infusai.com/assets/images/infusai-logo.png" />
+			</div>
+			<div className="title_">
+				<span>React</span> Swiper Slider
+			</div>
+		</div>
+		<Swiper navigation={true} effect={"coverflow"} centeredSlides={true} slidesPerView={window.innerWidth < 768 ? 1 : "auto"} loop={true}
+				coverflowEffect={{ rotate:50,stretch:0,depth:100,modifier:1,slideShadows:true }} pagination={{clickable:true}} className="mySwiper" >
+				
+			<SwiperSlide><img src="https://soliloquywp.com/wp-content/uploads/2018/11/nb_ist_cover.jpg" style={{width:"100%",height:"500px"}}/></SwiperSlide>
+            <SwiperSlide><img src="https://jssors8.azureedge.net/demos/image-slider/img/px-beach-daylight-fun-1430675-image.jpg" style={{width:"100%",height:"500px"}}/></SwiperSlide>
+            <SwiperSlide><img src="https://jssors8.azureedge.net/demos/image-slider/img/faded-monaco-scenery-evening-dark-picjumbo-com-image.jpg" style={{width:"100%",height:"500px"}}/></SwiperSlide>
+            <SwiperSlide><img src="https://i.ytimg.com/vi/xZJcJ6QRvfY/maxresdefault.jpg" style={{width:"100%",height:"500px"}}/></SwiperSlide>
+		
+		</Swiper>
+    </div>
+
+(4) Use below scss code:
+   
+    *{
+		margin:0;padding:0;
+	}
+	body
+	{
+		background-color:red;
+		position:relative;
+		width:100%;
+		height:100vh;
+		overflow:hidden;
+	}
+	.swiper-slide
+	{
+		background-position:center;
+		background-size:cover;
+		width:300px;
+		height:400px;
+		@media(max-width:768px)
+		{
+			width:250px;
+			height:auto;
+		}
+	}
+	.swiper-slide img
+	{
+		display:block;
+		width:100%;
+		height:100%;
+		object-fit:cover;
+	}
+	.container
+	{
+		position:relative;
+		width:100%;
+		height:60vh;
+		background-color:#000;
+		display:block;
+		.swiper-container
+		{
+			width:70%;
+			position:absolute;
+			left:50%;
+			bottom:-16vw;
+			transform:translate(-50%);
+			z-index:2;
+			padding-bottom:3vw;
+			@media(max-width:768px)
+			{
+			bottom:-58vw;
+			padding-bottom:8vw;
+			}
+			
+		}
+	}
+	.title_wrapper
+	{
+		display:flex;
+		justify-content:center;
+		align-content:center;
+		padding: 3vw 0 2vw 0;
+		@media(max-width:768px)
+		{
+			padding-top:13vw;
+		}
+		.reactLogo
+		{
+			width:5vw;
+			height:5vw;
+			margin-right:1vw;
+			@media(max-width:768px)
+			{
+			width:25vw;
+			height:25vw;
+			}
+			img
+			{
+				width:100%;
+				height:100%;
+				object-fit:cover;
+			}
+		}
+		.title_
+		{
+			color:#fff;
+			text-align:left;
+			font-size:2vw;
+			@media(max-width:768px)
+			{
+			font-size:7vw;
+			}
+			span
+			{
+				display:block;
+			}
+			
+		}
+	}
+	.swiper-pagination-fraction
+	{
+		bottom:0;
+	}
+	.swiper-pagination-bullet
+	{
+		width:25px;
+		height:5px;
+		border-radius:5px;
+	}

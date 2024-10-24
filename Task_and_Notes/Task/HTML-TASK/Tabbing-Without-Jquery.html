@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Tabing</title>
+    
+	<style>
+		.tabs input[type=radio] {
+          position: absolute;
+          opacity:0;
+      }
+      .tabs {
+        width: 650px;
+        float: none;
+        list-style: none;
+        position: relative;
+        padding: 0;
+        margin: 75px auto;
+      }
+      .tabs li{
+        float: left;
+      }
+      .tabs label {
+          display: block;
+          padding: 10px 20px;
+          border-radius: 2px 2px 0 0;
+          color: #000;
+          font-size: 24px;
+          font-weight: normal;
+          background: rgba(120,120,120,0.2);
+          cursor: pointer;
+          position: relative;
+          top: 3px;
+          -webkit-transition: all 0.2s ease-in-out;
+          -moz-transition: all 0.2s ease-in-out;
+          -o-transition: all 0.2s ease-in-out;
+          transition: all 0.2s ease-in-out;
+      }
+      .tabs label:hover {
+        background: rgba(255,255,255,0.5);
+        top: 0;
+      }
+       
+      .tabs input[id^=tab]:checked + label {
+        background: red;
+        color: #fff;
+        top: 0;
+      }
+
+	 <!-- .tabs2 input[id^=tab]:checked + label {
+        background: green;
+        color: #fff;
+        top: 0;
+      } -->
+       
+      .tabs [id^=tab]:checked ~ [id^=tab-content] {
+          display: block;
+      }
+      
+      .tab-content{
+        z-index: 2;
+        display: none;
+        text-align: left;
+        width: 100%;
+        font-size: 20px;
+        line-height: 140%;
+        padding-top: 10px;
+        background: red;
+        padding: 15px;
+        color: #fff;
+        position: absolute;
+        top: 53px;
+        left: 0;
+        box-sizing: border-box;
+        -webkit-animation-duration: 0.5s;
+        -o-animation-duration: 0.5s;
+        -moz-animation-duration: 0.5s;
+        animation-duration: 0.5s;
+      }
+	</style>
+  
+  </head>
+  <body>
+
+	<ul class="tabs">
+        <li>
+          <input type="radio" checked name="tabs" id="tab1">
+          <label for="tab1">tab 1</label>
+          <div id="tab-content1" class="tab-content animated fadeIn">
+   1
+          </div>
+        </li>
+        <li>
+          <input type="radio" name="tabs" id="tab2">
+          <label for="tab2">tab 2</label>
+          <div id="tab-content2" class="tab-content animated fadeIn">
+           2
+          </div>
+        </li>
+        <li>
+          <input type="radio" name="tabs" id="tab3">
+          <label for="tab3">tab 3</label>
+          <div id="tab-content3" class="tab-content animated fadeIn">
+            3
+          </div>
+        </li>
+</ul>
+<br>
+<div style="clear:both"></div>
+
+
+ 
+  </body>
+</html>
+
+

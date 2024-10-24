@@ -1,0 +1,49 @@
+https://www.youtube.com/watch?v=yJtrlvTzYO0         //latest link with ecommerce website
+
+https://www.youtube.com/watch?v=R-Epbgmy5ac&list=PL8p2I9GklV47mwhoWGnkGMC7zYAJlqugQ     // latest link 2024
+
+https://www.youtube.com/watch?v=yN8VXmncvRU         // tutorial link  //next js crash course competed till 01:33:17
+
+Environment Setup:
+
+(1) Install node js by https://nodejs.org/en
+
+	https://nextjs.org/docs/getting-started/installation    //to check minimum react version.
+	
+	
+(2) To create project:
+    Open folder location in vs code where we want to create project and run below command:
+    
+	npx create-next-app@latest	
+	
+	then follow below instruction:
+	
+	What is your project named? my-app
+	Would you like to use TypeScript? No / Yes
+	Would you like to use ESLint? No / Yes
+	Would you like to use Tailwind CSS? No / Yes
+	Would you like to use `src/` directory? No / Yes
+	Would you like to use App Router? (recommended) No / Yes
+	Would you like to customize the default import alias (@/*)? No / Yes
+	What import alias would you like configured? @/*
+	
+(3) To run :
+    Open project by vs code or go to inside project folder by vs code and run below command:
+    
+     npm run dev
+	 
+	 default page is src/app/page.js that will run(consider as index.js/index.html).
+	 
+(4) Folder Structure:
+    >> node_module: All dependencies save in this folder.	
+    >> public: we can save image folder, css folder etc.. that will be able to use publicaly.
+    >> .gitignore: we can mention the file/folder name which does not want to use.
+    >> jsconfig.json : use for file configuration.	
+	
+(5) We need to create every files/folders inside src/app folder. 
+    Default file name is page.js (consider as index.js/index.html), we can put folder name any thing according to need.
+
+	
+	
+
+	 

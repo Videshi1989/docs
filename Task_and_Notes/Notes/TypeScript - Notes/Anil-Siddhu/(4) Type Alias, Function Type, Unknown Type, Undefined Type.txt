@@ -1,0 +1,44 @@
+/*  Type Alias 
+we can define type and use on multiple place
+*/
+
+type varType = string | number | undefined ;
+
+let a:varType = "welcome";
+let b:varType = 10;
+let c:varType = undefined;
+
+
+
+
+/*  Function Type 
+    ek function jis type ki value ko return karta hai, wahi function ka type hota hai.
+	agar kuch bhi return nahi karta hai to us function ka type ya return type void hota hai.
+*/
+
+function add(a:number):number  // this function will always return a number
+{
+	return a;
+}
+add(10);
+
+
+
+/*  Unknown Type */
+let data:unknown;       
+data=20;
+data="hello";
+let item:string;
+//item=data;     // it will get error
+if(typeof data === 'string')
+{
+	item=data;
+}
+
+
+/*  undefined Type  */
+function tryReturn()
+{
+
+}
+console.log(tryReturn())   //it will return undefined

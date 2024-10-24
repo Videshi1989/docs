@@ -1,0 +1,8 @@
+
+ https://www.youtube.com/watch?v=udYgxSPPpg8&list=PLwGdqUZWnOp2DilqWo2F3zOAN2_P-KOIO&index=1  
+ //watch 1 to 8 for searching,get api data,host on netlify and pagination
+ 
+ https://hn.algolia.com/api         //api
+ 
+ 
+ https://www.youtube.com/watch?v=MxXZCD0XF2k           //pagination

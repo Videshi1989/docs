@@ -1,0 +1,153 @@
+
+ https://www.youtube.com/watch?v=aNI0tn9bLKg		  //Tutorial Link and setup    // small video - github
+ https://www.youtube.com/watch?v=CqSnEiKnDpA          //Tutorial Link and setup    // long video
+ https://www.youtube.com/watch?v=14R1mI47SOc          //tutorial link to push html code in github by vs code
+ https://www.youtube.com/watch?v=A2R-CMMyp64
+ https://www.youtube.com/watch?v=ufKRYe8ZPaw         //tutorial link to push html code in github by vs code
+
+
+
+https://www.youtube.com/watch?v=Fi75tq9JikI&pp=ygUgaG93IHRvIGRlcGxveSByZWFjdCBqcyBvbiBnaXRodWI%3D
+											//tutorial link to push react js code in github by vs code
+https://www.youtube.com/watch?v=mdO18zv3oGQ&pp=ygUgaG93IHRvIGRlcGxveSByZWFjdCBqcyBvbiBnaXRodWI%3D
+https://www.youtube.com/watch?v=ba1sVf2OVc4&pp=ygUgaG93IHRvIGRlcGxveSByZWFjdCBqcyBvbiBnaXRodWI%3D
+
+
+
+
+
+
+https://www.youtube.com/watch?v=OiGf_FUJFz4&pp=ygUraG93IHRvIGRlcGxveSByZWFjdCBqcyBvbiBuZXRsaWZ5IGJ5IGdpdGh1Yg%3D%3D
+									   //tutorial link to push react js code in netlify by github and vs code
+
+https://www.youtube.com/watch?v=B5zka8akZBU&pp=ygUraG93IHRvIGRlcGxveSByZWFjdCBqcyBvbiBuZXRsaWZ5IGJ5IGdpdGh1Yg%3D%3D
+									   //tutorial link to push react js code in netlify by github and vs code
+
+https://www.youtube.com/watch?v=jUnP7uljs1I&pp=ygUraG93IHRvIGRlcGxveSByZWFjdCBqcyBvbiBuZXRsaWZ5IGJ5IGdpdGh1Yg%3D%3D
+									   //tutorial link to push react js code in netlify by github and vs code
+
+https://www.youtube.com/watch?v=IokPiSZpXDY
+									   //tutorial link to push react js code in netlify by github and vs code
+									   
+									   
+									   
+									   
+/********************************************************************************************************************************************/
+
+Github Account Details:
+		https://github.com/
+		Email: videshi.muduli@gmail.com
+		Password: Q@vm2ind
+		
+Login Netlify Account By GitHub (If require then install Netlify):
+		https://www.netlify.com/
+		Email: videshi.muduli@gmail.com
+		Password: Q@vm2ind
+
+
+https://www.youtube.com/watch?v=B5zka8akZBU         //You tube link, i have pushed code by using this link
+
+Note
+   (1) If getting error regarding user name and password then run below command:
+	   git config --global user.email "videshi.muduli@gmail.com"
+       git config --global user.name "Videshi1989" 	
+	  
+	   then click on green button.
+	   
+   (2) To check status run below command:
+	   git status       OR      $ git status
+	   
+	   To stage run below command:
+	   git add .        OR      $ git add .
+	   
+	   To commit run below command:
+	   git commit -m "first commit"       OR       $ git commit -m "first commit"
+	   
+	   To push run below commnad:
+	   git push origin main             OR         $ git push origin main  
+
+   (3) We can direct commit on vs code then after few minute it will reflect on live.  
+
+   (4) If we will get:-  error: remote origin already exists   then we need to run below command:
+						 git remote rm origin
+	  
+/////////////////////////////////////////////////////////////////////// 
+
+Host React Project on Netlify by Github:
+
+Step 1: Install git by using below link:(search "download git" on google and goto first link)
+		https://git-scm.com/download/win
+
+Step 2: Create React Project
+
+Step 3: Create Github account and Login by using below link:
+		https://github.com/
+		
+		Email: videshi.muduli@gmail.com
+		Password: Q@vm2ind
+
+Step 4: Click on "+" icon >> New Repository >> Put the repository name >> Radio button should be on public >> Here it will show new repository >>
+		Follow "…or create a new repository on the command line" and Run one by one command in our local system(vs code) by using new terminal OR we can run all commands at a time >>
+		
+Step 5: Create netlify account and Login by github account using below link:
+		https://www.netlify.com/
+		
+		Click on Deploy to Netlify button	
+
+											OR
+											
+		Click on "Add new site" >> import an existing project >> Deploy with github >> Search and Select the repository >> Click on Deploy button. >> it wil show "Site deploy in Progress" then it will get the link.									
+		
+		
+///////////////////////////////////////////////////////////////////////////////////
+
+Fetch(Clone) project by git hub repository:
+
+	Step 1: Open vs code,By extension icon search "GitHub Pull Requests" OR "GitHub Pull Requests and Issues" and install it.
+	
+	Step 2: Open any one github repository >> code (dropdown) >> copy the url by icon.
+	
+	Step 3: Click on Setting icon in vs code, select "Command Palette(ctrl+shift+p)", search and select "Git: Clone" then paste the github    repository url then press Enter.
+	
+	Step 4: We will create a folder(any name) on any location where we want tu put then click on "Select Repository Location".
+			it will take few minute to pull then click on "Open"
+			
+	Step 5: Run the below command:
+			npm install
+			
+	Step 6: npm start		
+
+										OR
+
+
+	create a folder and open in vs code >> open terminal >> go to folder location by cd command >> 
+	
+	Open any one github repository >> code (dropdown) >> copy the url by icon.
+
+	then run below command:
+
+        git clone <paste the git hub link >
+
+	then run=> npm install
+        
+        Note:   our email should be opened and project should be available. if we want to pull outer side project then our email should be permissed by admin(author.)
+	
+	
+/////////////////////////////////////////////////////////////////////////////////////
+
+Pull the updates by using below command:
+
+ >> git pull
+ >> git merge
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+Push the updates by using below command:
+
+ >> git add .
+ >> git commit -m "type your message"	
+ >> git push
+
+////////////////////////////////////////////////////////////////////////////////////
+	
+	

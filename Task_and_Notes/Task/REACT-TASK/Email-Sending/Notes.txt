@@ -1,0 +1,42 @@
+https://www.youtube.com/watch?v=QDIOBsMBEI0              // for attachment and cc , bcc
+
+Reference link: https://nodemailer.com/
+
+Step (1) install nodemailer in server folder by below command:
+		 npm install nodemailer
+
+Step (2) insert below code in top of page:
+		 const nodemailer = require("nodemailer");
+		 
+Step (3) use below code inside perticular function:
+		 
+		const transporter = nodemailer.createTransport({
+                        service:'gmail',                   //sender service name
+                        host: "smtp.gmail.com",            //sender host name
+                        port: 587,
+                        secure: false, // Use `true` for port 465, `false` for all other ports
+                        auth: {
+                          user: "videshi.muduli@gmail.com",   //sender email address
+                          pass: "twnc bbea fsui simy",        //this is app password of email account
+                        },
+                      });
+
+                      
+                    const info = await transporter.sendMail({
+                        from: "videshi",
+                        to: "videshi.muduli1989@gmail.com", // list of receivers
+                        subject: "Test", // Subject line
+                        text: "Hello world?", // plain text body
+                        html: "<b>This is test message</b>", 
+                    });
+                    console.log("Message sent: %s", info);
+                    console.log("Message sent: %s", info.messageId);
+														
+Note: 
+		(1)Hit below link and click on create ethereal account than we will get fake user and pass than we can use user and pass value in 
+			above code:
+			https://ethereal.email/
+			
+		(2)	To get app password follow below instruction:
+			
+		    open email >> Manage your google account >> search 'app passwords' >> create app password and use it

@@ -1,0 +1,164 @@
+
+<html>
+<head>
+<title>Mech Man motors</title>
+
+<style>
+		body
+		{
+			background: #0000008c;
+		}
+
+		.for-rotaion
+		{
+			position: absolute;
+			padding: 0 28px 0 0;
+			
+			transform: rotate(-90deg);
+			top: 45px;
+			width: 163px;
+			left: -72px;
+			font-size: 20px;
+			font-weight: bold;
+			color: green;
+		}
+
+		.parent
+		{
+			display: flex;
+			height: 500px;
+			margin: 60px 0 0 0;
+		}
+
+		.gear
+		{
+			position: relative;
+			width: 200px;
+			height: 200px;
+			margin: auto;
+			background: #fff;
+			border-radius: 50%;
+			animation-name: spin;
+			animation-duration: 20s;
+			animation-iteration-count: infinite;
+			animation-timing-function: linear;
+		}
+
+		.gear .center
+		{
+			position: absolute;
+			top: 50px;
+			left: 50px;
+			z-index: 10;
+			width: 100px;
+			height: 100px;
+			background: #0000008c;
+			border-radius: 50%;
+		}
+
+		.tooth
+		{
+			position: absolute;
+			top: -150px;
+			left: 75px;
+			z-index: 1;
+			width: 50px;
+			height: 500px;
+			background: #fff;
+		}
+
+		.tooth:nth-child(2)
+		{
+			transform: rotate(45deg);
+		}
+
+		.tooth:nth-child(3)
+		{
+			transform: rotate(90deg);
+		}
+
+		.tooth:nth-child(4)
+		{
+			transform: rotate(135deg);
+		}
+
+		@keyframes spin 
+		{
+			from {transform: rotate(0deg); }
+			to {transform: rotate(360deg);}
+		}
+
+		.dd
+		{ 
+			margin: 0px 0 0 0;
+			height: 152px;
+			width: 180%;
+			position: relative;
+			top: -38px;
+			left: -38px;
+		}
+
+		.hd
+		{
+			font-size:50px;  
+			
+		}
+
+		path
+		{
+			fill: transparent;
+		}
+
+		text
+		{ 
+            font-size: 60px;
+            font-family: Franklin Gothic, sans-serif;
+            font-weight: 900; 
+            text-transform: uppercase;
+            letter-spacing: 5px;
+        }
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+
+<div class="parent">
+   <div class="gear">
+        <div class="center">
+			<div class="dd">
+			    <svg viewBox="0 0 500 500">
+				    <path id="curve" d="M243.2, 382.4c-74.8,0-135.5-60.7-135.5-135.5s60.7-135.5,135.5-135.5s135.5, 60.7, 135.5,
+                    135.5 S318, 382.4, 243.2, 382.4z" />
+  
+				    <text dy="-50" textLength="1200" width="500">
+					    <textPath xlink:href="#curve" class="hd" >
+							MECH MAN MOTORS PVT. LTD.
+					    </textPath>
+				    </text>
+			    </svg>
+            </div>
+        </div>
+		
+        <div class="tooth"><span class="for-rotaion">PRODUCTION</span></div>
+        <div class="tooth"><span class="for-rotaion">PURCHASE</span></div>
+        <div class="tooth"><span class="for-rotaion">STOCK</span></div>
+        <div class="tooth"><span class="for-rotaion">ADMIN</span></div>
+    </div>  
+</div>
+
+
+
+
+
+</body>
+
+
+
+</html>

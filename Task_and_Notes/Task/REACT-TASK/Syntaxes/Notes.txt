@@ -1,0 +1,75 @@
+
+<script>
+      if (localStorage.theme === 'dark' || !('theme' in localStorage)) {
+        document.querySelector('html').classList.add('dark');
+        document.querySelector('html').style.colorScheme = 'dark';
+      } else {
+        document.querySelector('html').classList.remove('dark');
+        document.querySelector('html').style.colorScheme = 'light';
+      }        
+</script>   
+
+=======================================================================
+
+	<div className={`${message.sender === 'Nabendu' ? 'chat__content' : 'chat__dark'}`} onClick={() => toggleSelectMessage(index)}>
+
+        {selectedMessages.includes(index) && (
+
+                <Checkbox checked={true} readOnly />
+
+        )}
+
+        <p>{message.message}</p>
+
+        {message.sender === 'Nabendu' ? <TextToSpeech text={message.message} isSender={true} /> : <TextToSpeech text={message.message} isSender={false} />}
+
+    </div>
+	
+======================================================================
+
+	className={`dropbtn ${ pathsplit[3]=='product' ? 'active' : 'null' }`}
+
+    style={{ display: `${closefilter == false ? 'block' : 'none'}` }}
+
+======================================================================
+
+               {
+						records.map((data,index) => 
+                     
+                     <SwiperSlide className='parentcat' key={index}> 
+                        {count = subcategory.filter((post) => post.categoryid === data._id).length}
+                        
+                        {
+                           count > 1 ? (
+                           <div className="category-image text-center" onClick={ShowSubCategory}>
+                           <div title={data.categoryname}>
+                              <img loading='lazy' title={data.categoryname}  src={`${process.env.REACT_APP_BACK_END_URL}/uploads/${data.imagename}`} alt={data.categoryname} />
+                           </div>
+                           <span>{data.categoryname} {count > 1 && <i className="fa fa-caret-down" aria-hidden="true"></i>}</span>
+                         
+                           </div>
+                                    ) : 
+                                    (
+                                       <div className="category-image text-center">
+                                       <div title={data.categoryname}>
+                                          <img loading='lazy' title={data.categoryname}  src={`${process.env.REACT_APP_BACK_END_URL}/uploads/${data.imagename}`} alt={data.categoryname} />
+                                       </div>
+                                       <span>{data.categoryname} </span>
+                         
+                                       </div>
+                                    )
+                        }
+                  
+                  </SwiperSlide>
+                     
+                  )
+                   
+					}
+
+==========================================================================
+
+{count > 1 && <i className="fa fa-caret-down" aria-hidden="true"></i>}
+
+
+==========================================================================
+                             

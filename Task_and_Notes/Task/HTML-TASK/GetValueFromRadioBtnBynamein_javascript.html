@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+   
+
+    Gender:
+    <input type="radio" name="gender" value="Male">Male
+    <input type="radio" name="gender" value="Female">Female
+    <input type="radio" name="gender" value="Others">Others
+
+    <br>
+
+    <button type="button" onclick="displayRadioValue()">
+        Submit
+    </button>
+
+    <br>
+
+    <div id="result"></div>
+
+    <script>
+        function displayRadioValue()
+        {
+            var ele = document.getElementsByName('gender');
+            
+            for (i = 0; i < ele.length; i++)
+            {
+                if (ele[i].checked)
+                {
+                    // document.getElementById("result").innerHTML = "Gender: " + ele[i].value;
+                    alert(ele[i].value);
+                }
+                    
+            }
+        }
+		
+	 /* we can alo use
+	  var gender=$('input[name="Gender"]:checked').val();
+		*/
+		
+    </script>
+    
+</body>
+</html>

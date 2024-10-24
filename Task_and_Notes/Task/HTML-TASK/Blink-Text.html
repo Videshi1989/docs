@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Blink</title>
+
+<style>
+
+
+.blink-hard {
+  animation: blinker 0.5s step-end infinite;
+  color:red;
+}
+.blink-hard:hover {
+  animation: unset;
+  color:red;
+  cursor:pointer;
+}
+.blink-soft {
+  animation: blinker 2.5s linear infinite;
+  color:red;
+}
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+  <h1 class="blink-hard">Hard Blink</h1>
+  <h1 class="blink-soft">Soft Blink</h1>  
+</div>
+
+
+
+
+</body>
+</html>

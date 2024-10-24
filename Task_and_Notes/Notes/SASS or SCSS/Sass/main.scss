@@ -1,0 +1,62 @@
+//operators
+//variables
+//nesting
+//mixin and parameter           //for repeatation
+//partial
+
+
+@import "mixin"; // OR @import "_mixin";  OR  @import "_mixin.scss";   OR  @import "mixin.scss";   
+                 //partial  (creating separate file is calles partial)
+@import "var";
+        
+
+
+:root{
+    font-size: 62.5%;
+}
+
+
+/*
+html{
+    font-size: 10px;           
+}*/
+
+
+
+
+header             
+{
+    display: grid;
+    place-content: center;
+    @include repeatproperty;
+
+    h1   //nested
+    {
+        color:$font-color;            //variables
+        font-size: 5rem + 1rem;       //operators
+        @include repeatproperty;      //mixin without parameter
+        @include spacing(0.5rem);     //mixin with parameter
+
+        &:hover    //nested
+        {
+            color:yellow;
+        }
+
+        &::after   //nested
+        {
+            content:" Raj";
+        }
+    }
+    p
+    {
+        color:red;
+        font-size: 3rem + 1rem;
+        @include spacing(1rem);      //mixin with parameter
+    }
+    
+}
+
+div{
+    color:pink;
+    font-size: 5rem;
+}

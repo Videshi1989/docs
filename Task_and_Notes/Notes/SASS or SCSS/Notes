@@ -1,0 +1,16 @@
+
+https://www.youtube.com/watch?v=tEQOdFgUXI4               //You tube link
+
+(1)Click on 5th icon (Extensions)>> search "Live Sass Compiler" >>install it (If not installed)
+
+(2)Create html file than create scss file >> after creating scss file, click on "Watch Sass" 
+on footer portion, it will generate css file automatically, than attach this css file in our html file.
+
+(3)To run file we need to install "Live Server"(If not installed) by using 5th icon (Extensions)
+(4)We will include css file in our html file and we will work on scss file.
+(5)To create separate file for mixin and varialbe, we use _ character(this is mandatory),
+   with .scss extension.
+   
+   
+   
+   

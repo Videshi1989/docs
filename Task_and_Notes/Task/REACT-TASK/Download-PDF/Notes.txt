@@ -1,0 +1,39 @@
+// npm install jspdf jspdf-autotable
+
+import React from "react";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+
+const DataTable = () => {
+  const data = [
+    { id: 1, name: "John Doe", age: 28, email: "john@example.com" },
+    { id: 2, name: "Jane Smith", age: 34, email: "jane@example.com" },
+    { id: 3, name: "Sam Green", age: 22, email: "sam@example.com" },
+  ];
+
+  const columns = [
+    { header: "ID", dataKey: "id" },
+    { header: "Name", dataKey: "name" },
+    { header: "Age", dataKey: "age" },
+    { header: "Email", dataKey: "email" },
+  ];
+
+  const downloadPDF = () => {
+    const doc = new jsPDF();
+    doc.text("Data Table", 14, 16);
+    doc.autoTable({
+      head: [columns.map(col => col.header)],
+      body: data.map(row => columns.map(col => row[col.dataKey])),
+      startY: 20,
+    });
+    doc.save("datatable.pdf");
+  };
+
+  return (
+    <div>
+        <button onClick={downloadPDF}>Download as PDF</button>
+    </div>
+  );
+};
+
+export default DataTable;

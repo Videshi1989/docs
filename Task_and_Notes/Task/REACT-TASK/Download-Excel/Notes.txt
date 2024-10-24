@@ -1,0 +1,35 @@
+// npm install xlsx
+
+
+import React from "react";
+import * as XLSX from "xlsx";
+
+const DataTable = () => {
+  const data = [
+    { id: 1, name: "John Doe", age: 28, email: "john@example.com" },
+    { id: 2, name: "Jane Smith", age: 34, email: "jane@example.com" },
+    { id: 3, name: "Sam Green", age: 22, email: "sam@example.com" },
+  ];
+
+  const columns = [
+    { header: "ID", dataKey: "id" },
+    { header: "Name", dataKey: "name" },
+    { header: "Age", dataKey: "age" },
+    { header: "Email", dataKey: "email" },
+  ];
+
+  const downloadExcel = () => {
+    const ws = XLSX.utils.json_to_sheet(data);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Data");
+    XLSX.writeFile(wb, "datatable.xlsx");
+  };
+
+  return (
+    <div>
+		<button onClick={downloadExcel}>Download as Excel</button>
+    </div>
+  );
+};
+
+export default DataTable;

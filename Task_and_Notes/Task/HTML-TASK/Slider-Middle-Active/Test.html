@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    
+    <style>
+        
+        .owl-nav{
+            display:none;
+        }
+        /*.owl-item.active > div:after {
+            content: 'active';
+        }*/
+
+        /*.owl-item.center > div:after {
+            content: 'center';
+        }*/
+
+        /*.owl-item.active.center > div:after {
+            content: 'videshi';
+           
+        }*/
+        .owl-item.active.center {
+            color: red;
+        }
+
+        /*.owl-item > div:after {
+            font-family: sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+        }*/
+    </style>
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.css">
+
+</head>
+<body>
+  
+    <div class="owl-carousel">
+        <div style="border:1px solid;">slider1</div>
+        <div style="border:1px solid;">slider2</div>
+        <div style="border:1px solid;">slider3</div>
+        <div style="border:1px solid;">slider4</div>
+        <div style="border:1px solid;">slider5</div>
+        <div style="border:1px solid;">slider6</div>
+        
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+
+    <script>
+        $('.owl-carousel').owlCarousel({
+            autoplay: true,
+            center: true,
+            loop: true,
+            nav: true,
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
+
+// npm i react-datepicker
+
+const Imageupload = () => {
+    
+      const [startDate, setStartDate] = useState(new Date());
+    
+      return (
+      <>
+            <DatePicker selected={startDate} dateFormat="dd-MM-yyyy" placeholderText="Select a date" isClearable={true} onChange={(date) => setStartDate(date)} />
+      </>
+      )
+};
+
+export default Imageupload;
+
+
+/*
+to change format:
+
+Step(1): npm install date-fns
+Step(2): import { format } from "date-fns";
+
+Step(2): 
+	const [fromDate, setFromDate] = useState('');
+	
+
+	const FilterByDate = ()=>{
+		
+		const fromDateFomatted = format(fromDate, "dd-MM-yyyy");
+		console.log("From Date:",fromDateFomatted)
+		
+	}
+	<input type="date" onChange={(e) => setFromDate(e.target.value)}  className='form-control searchdata datepk' placeholder='From date' />
+	
+	<button type="button" onClick={FilterByDate} className='btn btn-light searchbtn'>Search</button>	
+
+
+*/

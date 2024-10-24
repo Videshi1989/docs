@@ -1,0 +1,19 @@
+open media encoder >> Queue tab should be active >> 
+click on + icon and insert the video which we want to compress >>
+first dropdown should be selected H264 >> second dropdown should be selected Mobile Device 1080p HD >> 
+click on the text "Mobile Device 1080p HD" >> in right side "video" tab should be active >> 
+(1) We can rename output file name.
+(2) under Basic Video Setting, Height should be 720(if getting any issue then it will 1080) and Frame Rate should be 24 by uncheking check box.
+(3) under Bitrate Settings, select Bitrate Encoding and it should be CBR and Target Bitrate [Mbps]:, it should be 6 or 4 or 2
+
+>> click on "ok"
+>>on right top corner click on "Start Queue" button(Play icon)
+
+
+
+
+
+
+
+Note:
+(1) To reset: Right click on "custom" and select Reset Status.

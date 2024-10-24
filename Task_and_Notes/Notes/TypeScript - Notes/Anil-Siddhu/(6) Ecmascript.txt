@@ -1,0 +1,18 @@
+(1)ecmascript:
+
+when we compile ts file then it generates js file, according to ecmascript which is mentioned with in json config file name of "target". it can be es5,es6,es2016,es2015,....etc.
+
+
+(2)compiled file location:
+if we want to generates js file on a perticular location, then uncomment "outDir" and mention the location where we want to generate js files.
+
+
+(3) To identify unused variables, unused parameters , return and more...... 
+    uncomment below things in json config file:
+	>> "noUnusedLocals": true,
+	>> "noUnusedParameters": true,
+	>> "noImplicitReturns": true,
+	"noFallthroughCasesInSwitch": true,          // to identify error for switch case statement
+	>> .........more
+
+

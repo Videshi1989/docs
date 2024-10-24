@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JavaScript Split a String from Space</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    
+    <h3 style="color:32A80F" id="result" align="center"></h3>
+   
+  
+    <script>
+        var dob = new Date("06/24/2005");
+        var month_diff = Date.now() - dob.getTime();
+        var age_dt = new Date(month_diff);
+        var year = age_dt.getUTCFullYear();
+        var age = Math.abs(year - 1970);
+        document.write("Age of the date entered: " + age + " Yrs");
+    </script>  
+
+
+    
+</body>
+</html>
+

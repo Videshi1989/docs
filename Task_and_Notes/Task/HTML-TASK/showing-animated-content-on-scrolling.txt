@@ -1,0 +1,3 @@
+https://codepen.io/verydisco/pen/grVQQZ      // showing animated content on scrolling
+
+https://javascript.plainenglish.io/18-javascript-css-scroll-effects-for-website-d7cd8bd81da2

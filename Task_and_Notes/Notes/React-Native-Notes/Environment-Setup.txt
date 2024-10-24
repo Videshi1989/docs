@@ -1,0 +1,35 @@
+															
+															React-NAtive
+
+ https://www.youtube.com/watch?v=z1qG80Jkzi8&list=PL8p2I9GklV468O2wk-n8Q1KmtMhnHHj4C              //Tutorial Link
+
+ https://reactnative.dev/docs/environment-setup      //officail link
+
+ Setup:
+    (1) Install Node js by using below link:
+		https://nodejs.org/en                         //go to recommeded for most users
+		
+		Note: we can check node js installed or not by using below 2 command in command prompt-
+		      node -v
+			  npm -v
+		
+    (2) Install VS code editor.
+
+    (3) Go to file >> open folder >> select the location where you want to create project. 
+	
+	(4) open below link:
+	    https://reactnative.dev/docs/environment-setup
+		
+		select "Expo CLI Quickstart" tab >> select "npm" tab, copy first command (like: npx create-expo-app AwesomeProject, where AwesomeProject is project name)
+		
+	(5) Go to vs code editor, open terminal(Ctrl+shift+~) and paste the command then press enter for execution.
+	(6) After creating project go to inside project location by using "cd" command and run project by using below command:
+	    
+		npx expo start
+		
+	(7) Open android/ios phone >> playstore >> download and install "Expo Go" App >> Open the App >> Login >> click on "scan QR code" >> scan the QR code 
+	    which will show in vs code editor.	
+	
+	
+Note:
+     To setup environment by another way (by using android studio and JDK) watch second video of tutorial link.

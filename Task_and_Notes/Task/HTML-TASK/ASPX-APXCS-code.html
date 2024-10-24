@@ -1,0 +1,10 @@
+    ************************************** .ASPX and .aspxcs CODE  *******************************
+	
+	(1) set id and show dynamic data
+	    
+		.aspx code
+		<span  style="" ID="showkycstatus" runat="server"></span>
+		
+		aspx.cs code
+		txtkycstatus = ds.Tables[0].Rows[0]["status"].ToString();
+        showkycstatus.InnerHtml = txtkycstatus;

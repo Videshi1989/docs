@@ -1,0 +1,18 @@
+function sum(a:number , b:number):number
+{
+    return a + b;
+}
+
+
+
+ //       OR
+
+//  const sum = (a:number , b:number):number =>
+// {
+//     return a + b;
+// }
+
+
+
+ console.log(sum(5,50));
+

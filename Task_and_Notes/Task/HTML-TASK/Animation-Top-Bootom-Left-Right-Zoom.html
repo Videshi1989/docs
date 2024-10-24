@@ -1,0 +1,37 @@
+<!-- 
+
+https://www.w3schools.com/w3css/4/w3.css
+
+-->
+<html>
+	<head>
+		<style>
+		
+		::-webkit-scrollbar 
+		{
+			display: none;
+		}
+		
+		
+		
+.animate-top{position:relative;animation:animatetop 0.4s}@keyframes animatetop{from{top:-300px;opacity:0} to{top:0;opacity:1}}
+.animate-left{position:relative;animation:animateleft 0.4s}@keyframes animateleft{from{left:-300px;opacity:0} to{left:0;opacity:1}}
+.animate-right{position:relative;animation:animateright 0.4s}@keyframes animateright{from{right:-300px;opacity:0} to{right:0;opacity:1}}
+.animate-bottom{position:relative;animation:animatebottom 0.4s}@keyframes animatebottom{from{bottom:-300px;opacity:0} to{bottom:0;opacity:1}}
+.animate-zoom {animation:animatezoom 0.6s}@keyframes animatezoom{from{transform:scale(0)} to{transform:scale(1)}}
+.spin{animation:w3-spin 2s infinite linear}@keyframes w3-spin{0%{transform:rotate(0deg)}100%{transform:rotate(359deg)}}
+
+		</style>
+	</head>
+	
+	<body>
+			<div class="animate-top">Top Animation</div>
+			<div class="animate-left">Bottom Animation</div>
+			<div class="animate-right">Left Animation</div>
+			<div class="animate-bottom">Right Animation</div>
+			<div class="animate-zoom">Zoom Animation</div>
+			<div class="spin">Spin Animation</div>
+	</body>
+
+</html>
+

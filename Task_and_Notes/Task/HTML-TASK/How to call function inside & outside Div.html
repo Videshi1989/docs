@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>check</title>
+	
+	
+    <style>
+
+
+
+.popup-container {
+    background:red;
+    width: 100%;
+    height: 100%;
+
+    align-items: center;
+}
+
+
+
+	</style>
+</head>
+
+<body>
+ 
+<div id="clickbox" class="popup-container" onclick="check()">
+  <div class="popup-content">
+    <span id="close">&times;</span>
+    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+  </div>
+</div>
+
+  
+  <script>
+     
+
+window.addEventListener('click', function(e){   
+  if (document.getElementById('clickbox').contains(e.target)){
+    alert('inside');
+  } else{
+    alert('outside');
+  }
+});
+  </script>
+</body>
+
+</html>

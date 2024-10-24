@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JavaScript Split a String from Space</title>
+</head>
+<body>
+    <script>
+        var myStr = "The quick brown fox jumps over the lazy dog.";
+        var strArray = myStr.split(" ");
+
+        // Display array values on page
+        for (var i = 0; i < strArray.length; i++) {
+            document.write("<p>" + strArray[i] + "</p>");
+        }
+    </script>
+</body>
+</html>
+
+
+<!-- Split value in Asp.net with C#  -->
+<!--    
+
+string multiCharString = "Mahesh..Chand, Henry\n He\t, Chris-Love, Raj..Beniwal, Praveen-Kumar";  
+// Split authors separated by a comma followed by space  
+string[] multiArray = multiCharString.Split(new Char [] {' ', ',', '.', '-', '\n', '\t' } );  
+foreach (string author in multiArray)  
+{  
+    if (author.Trim() != "") 
+    {
+		//Console.WriteLine(author); 
+		// Acting.Checked = true;    // Acting is id of check box
+		WebMsgBox.Show(author);
+	}	
+          
+}  
+
+
+-->

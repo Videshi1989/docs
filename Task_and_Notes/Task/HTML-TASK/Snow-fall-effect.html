@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snowfall Effect Example</title>
+    <style>
+		.heart {
+  position: fixed;
+  font-size: 1.5rem;
+ 
+  color:blue;
+  
+  top: -1vh;
+  transform: translateY(0);
+  animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+  from {
+     transform: translateY(0vh) translateX(-10vw); 
+  }
+  to {
+     transform: translateY(105vh) translateX(10vw); 
+  }
+} 
+	</style>
+</head>
+
+<body>
+   
+
+<script>
+		function createHeart() {
+  const heart = document.createElement('div');
+  heart.classList.add('heart');
+  
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = Math.random() * 2 + 5 + "s";   //to control speed => Math.random() * 5 + 4 + "s";
+  
+  heart.innerHTML = "<img src='flag.jpg' />";    // to change image
+  heart.innerText = '●';    					 // to change symbol/icon
+  
+  
+  document.body.appendChild(heart);
+  
+  setTimeout(() => {
+              heart.remove();
+              }, 5000);
+}
+
+setInterval(createHeart, 150);   //to control counting => 100
+	</script>
+</body>
+
+</html>

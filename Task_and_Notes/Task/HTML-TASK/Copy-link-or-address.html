@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+  
+</head>
+<body>
+   
+        <button class="btn btn-primary copyaddress" id="cbtn" type="button">Copy address</button>
+        <input type="text" id="storeaddress" class="" value="thisiscopytext" style="width:2%;opacity:0;">
+
+    <!--we can set position(style property) on input field to avoid disturb design-->
+
+    <script>
+
+        (function () {
+            var copyButton = document.querySelector('#cbtn');
+            var copyInput = document.querySelector('#storeaddress');
+            copyButton.addEventListener('click', function (e) {
+                document.getElementById("cbtn").innerHTML = "Copied";
+                e.preventDefault();
+                var text = copyInput.select();
+                document.execCommand('copy');
+            });
+
+            copyInput.addEventListener('click', function () {
+
+                this.select();
+
+            });
+        })();
+
+    </script>
+</body>
+</html>

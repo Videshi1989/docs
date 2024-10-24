@@ -1,0 +1,39 @@
+using System.IO;
+
+         /////////image upload
+            //////  NotificationImg   is id of input tag type is file
+            string file = "";
+            if (NotificationImg.HasFile)
+            {
+                file = "~/UserProfileImg/" + Guid.NewGuid();   //set folder to save image
+                string ext = Path.GetExtension(NotificationImg.FileName);
+
+                if (ext.ToString().Trim() == ".jpg" || ext.ToString().Trim() == ".gif" || ext.ToString().Trim() == ".bmp" || ext.ToString().Trim() == ".jpeg" || ext.ToString().Trim() == ".png")
+                {
+
+                    file += ext;        //getimage name
+                    NotificationImg.SaveAs(Server.MapPath(file));
+
+					////Getting Size
+                    System.Drawing.Image img = System.Drawing.Image.FromStream(NotificationImg.PostedFile.InputStream);
+                    int height = img.Height;
+                    int width = img.Width;
+                    decimal size = Math.Round(((decimal)NotificationImg.PostedFile.ContentLength / (decimal)1024), 2);
+
+                    if(size > maxFileLength)
+                    {
+
+                    }
+                    else
+                    {
+
+                    }
+
+                }
+                else
+                {
+
+                }
+
+
+            }

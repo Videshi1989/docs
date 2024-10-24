@@ -1,0 +1,32 @@
+This service is woking only with in server side.
+
+Step(1): install twillio by using below command with in server side-
+		 npm i twilio
+		 
+
+Step(2): By using below code we can send sms:
+
+		const accountSid = 'ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX';     //replace accountSid
+		const authToken = 'your_auth_token';      //replace authToken
+
+		const client = require('twilio')(accountSid, authToken);
+
+		client.messages.create({
+									body: 'Hello from twilio-node',
+									to: '+12345678901', // Replace this no. with verified caller id or purchase a twillio no. to send sms 
+														//any number (unverfied number).
+									from: '+12345678901', // Replace Twilio number
+								}).then((message) => {console.log(message.sid)}).catch((error)=>{console.log("error",error)});
+								
+								
+Step(3): Open below link and sign up[if already sign up then sign in].
+		 https://www.twilio.com/        
+		 email: videshi.muduli@gmail.com
+		 pwd: ReactSMS@infusai$Twilio758				
+
+
+		Note:
+		(1): Go to accound dashboard, get accountSid and authToken then replace inside our code.
+		(2): Get Twilio phone number and replace it instead of from number.
+		(3): Get to number(receiver number) from verified caller ID's inside Manage menu. Here we can add more caller id (receiver number)
+        	 for testing purpose. we can send sms to only verified caller id's. if we want to send sms to any number then we need to purchase one twilio number.
